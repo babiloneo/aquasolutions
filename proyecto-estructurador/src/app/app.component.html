@@ -1,0 +1,106 @@
+<!--Contenedor del Menu, seccion de arriba -->
+<div class="linea">
+  <div class="clogo">
+    <img class="log" src="./assets/images/logo.png">
+  </div>
+
+</div>
+
+
+<div class="menu" >
+
+  <div class="limite">
+
+  <div class="tabla">
+  <table id="secciones">
+  <tr>
+    <td ><a [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a></td>
+      <td ><a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a></td>
+      <td ><a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a></td>
+      <td ><a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a></td>
+      <td ><a [routerLink]="['/graf-lineal']">GRAFICA</a></td>
+      <td ><a >PANEL DE CONTROL</a></td>
+  </tr>
+
+  </table>
+
+  </div>
+    <div class="cbot"> 
+
+      <div  class="logout">
+        <a [routerLink]="['/register']">REGISTRO</a>
+        <a [routerLink]="['/login']">LOGIN</a>
+
+      </div>
+
+    </div>
+  </div>
+</div><!--fin menu -->
+
+
+<!--Seccion de en medio -->
+<div class="banner">
+  <div ng2-carouselamos class="slides-wrapper" 
+  [items]="items"
+  [width]="1200"
+  [$prev]="prev"
+  [$next]="next"
+  [$item]="item">
+  </div>
+
+<ng-template #prev>
+  <img src="./assets/images/prev.svg" id="left" />
+</ng-template>
+
+<ng-template #next>
+  <img src="./assets/images/next.svg" id="right" />
+</ng-template>
+
+<ng-template #item let-item let-i="index">
+  <div class="items">
+      <img src="{{item.name}}" class="imgb">
+  </div>
+</ng-template>
+
+</div>
+
+<router-outlet></router-outlet>
+
+
+<br>
+<!--Seccion de abajo -->
+
+<div class="pie">
+
+  <div class="pielimit">
+    
+      <div class="pieizq">
+        <img class="logf" src="./assets/images/logo.png">
+      </div>
+
+
+      <div class="piecentro">
+          <p class="info">
+          Copyright © 2016 Hard sys Todos los derechos reservados
+        </p>
+
+      </div>
+
+
+      <div class="pieder">
+        <div class="red">
+          <img src="./assets/images/redface.png"/>
+        </div>
+
+        <div class="red">
+          <img src="./assets/images/redtwitter.png"/>
+        </div>
+
+        <div class="red">
+          <img src="./assets/images/redwhats.png"/>
+        </div>
+      </div>
+
+  </div>
+
+</div> <!--fin pie-->

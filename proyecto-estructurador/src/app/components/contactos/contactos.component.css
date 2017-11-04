@@ -1,0 +1,217 @@
+
+
+.grupo {
+	width: 100;
+	height: 100;
+	
+
+}
+.email {
+	width: 100;
+	height: 50;
+	float: left;
+	padding-left: 30px;
+}
+
+p.em{
+	padding-top: 15px;
+	color: #3db7ef
+
+}
+
+
+.siguenos {
+	width: 100;
+	height: 50;
+	float:right;
+	padding-right: 30px;
+}
+
+
+.reds{
+	padding-left: 10px;
+	float: left;
+}
+
+
+.cuerpo{
+	width: 1200px;
+	margin: auto;
+	height: 1100px;
+	
+}
+
+.banner {
+	width: 1200px;
+	margin:0 auto;
+	
+}
+
+p {
+
+	text-align: justify;
+	line-height: 1.5;
+  font-family: calibri;
+  font-size:18px;
+  color: #4d4f54;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+.ladoizq{
+	
+	width:725px;
+	height:1100px;
+	float: left;
+
+}
+
+.denizq{
+	
+	width:700px;
+	height:400px;
+	padding-left: 15px;
+	padding-top: 14px;
+
+}
+
+.denizq2{
+	
+	width:700px;
+	height:680px;
+	padding-left: 15px;
+	padding-top: 14px;
+
+}
+
+.ladoder{
+	
+	width:445px;
+	height:600px;
+    float: right;
+    
+
+}
+
+.ubic{
+	padding-top: 40px;
+}
+
+section#formulario{
+
+	/*margin-top: 20px;
+	margin-left: 20px;*/
+	width:710px;
+	height: 690px;
+	
+	
+}
+
+.salt{
+	height: 6px;
+}
+
+h1#titulo{
+	font-size: 2em;
+	text-align: center;
+	font-family: gadugi;
+	color: #4d4f54;
+
+}
+input[id="nombre"]{
+	width: 310px;
+	height: 35px;
+	margin-left: 18px;
+	margin-top:20px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	font-family: gadugi;
+	border: 1px solid gray ;
+	
+	
+
+}
+input[id="apellido"]{
+	width: 322px;
+	height: 35px;
+	margin-left: 18px;
+	margin-top:20px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	background-color: #fff;
+	font-family: gadugi;
+	border: 1px solid gray ;
+
+	
+	
+
+}
+
+input[id="correo"]{
+	width: 655px;
+	height: 35px;
+	margin-left: 18px;
+	margin-top:20px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	background-color: #fff;
+	outline: none;
+	font-family: gadugi;
+	border: 1px solid gray ;
+	
+	
+}
+
+textarea{
+	width: 655px;
+	height: 270px;
+	margin-left: 18px;
+	padding-left: 10px;
+	margin-top:20px;
+	font-size: 1.1em;
+	font-family: gadugi;
+	
+
+}
+
+
+input[type="submit"]{
+	margin:20px;
+	margin-bottom: 20px;
+	width:300px;
+	height: 50px;
+	border:0px;
+	background-color: #3db7ef;
+	color: white;
+	font-size: 1.2em;
+	cursor: pointer;
+
+}
+
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: #2d3e50;
+
+}
+
+
+a.indown{
+  font-family: calibri;
+  font-size:18px;
+  text-decoration: none;
+  float:left;
+  padding-left: 120px;
+  color: #ffffff;
+
+}

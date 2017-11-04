@@ -1,0 +1,38 @@
+
+
+
+.cuerpo{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+
+p {
+	text-align: justify;
+	line-height: 1.5;
+	font-family: calibri;
+	font-size:18px;
+	color: #4d4f54;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+.centro{
+	margin-left: 180px;
+	background-color:#fff;
+	width:800px;
+	height:800px;
+	
+
+}

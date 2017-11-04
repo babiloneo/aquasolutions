@@ -1,0 +1,190 @@
+.cuerpo{
+	width: 1200px;
+	margin: auto;
+}
+
+p {
+
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: #4d4f54;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: white;
+	text-align: center;
+}
+
+h1#tit {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+.contenedor{
+	width: 1200px;
+	height: 760px;
+
+}
+
+.esp{
+	width: 100px;
+	height: 400px;
+	float: left;
+}
+
+.cimg{
+	width: 150px;
+	height: 150px;
+	margin-left: 150px;
+}
+
+.conizq{
+	width: 450px;
+	height: 400px;
+	background-color: #172645;
+	float: left;
+	
+}
+
+.conder{
+	width: 450px;
+	height: 400px;
+	background-color: #172645;
+	float: left;
+	
+}
+
+.conizq:hover{
+background-color: #3cb7f0;
+}
+
+.conder:hover{
+background-color: #3cb7f0;
+}
+
+.texcon{
+	width: 400px;
+	margin: 0 auto;
+}
+
+
+
+/*-----extra servicios-venta---------------------------------------------------------------------------------------------------*/
+
+.titulo{
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.titulo2{
+	width: 1000px;
+	height: 240px;
+	margin: 0 auto;
+}
+
+p#tile {
+
+	text-align: center;
+}
+
+p.tpmed {
+
+	color: white;
+}
+
+
+h3 {
+	font-family: gadugi;
+	color: white;
+	text-align: center;
+}
+
+h2.pr {
+	font-family: gadugi;
+	color: white;
+	text-align: center;
+	margin-top: 41px;
+}
+
+.opcion{
+	width: 850px;
+	height: 200px;
+	background-color: #172645;;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.cizq{
+	width: 200px;
+	height: 200px;
+	float: left;
+
+}
+
+		.imciz{
+			width: 150px;
+			height: 150px;
+			margin: 0 auto;
+			
+			
+		}
+.cmed{
+	width: 410px;
+	height: 200px;
+	float: left;
+}
+
+		.textmed{
+			width: 390px;
+			height: 180px;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+
+.cder{
+	width: 240px;
+	height: 200px;
+	float: left;
+}
+
+		.cprebut{
+			width: 220px;
+			height: 160px;
+			margin: 0 auto;
+
+		}
+
+				input[class="venta"]{ /*boton adquirir*/
+					
+					margin-left: 30px;
+					width:160px;
+					height: 40px;
+					border:0px;
+					background-color: #40dc6e;
+					color: white;
+					font-size: 1.1em;
+					cursor: pointer;
+					margin-top: 10px;
+				}
+
+.info {
+	text-align: justify;
+    font-family: Trebuchet MS;
+    font-size:16px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

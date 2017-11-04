@@ -1,0 +1,32 @@
+.cuerpo{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	height: 700px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.grafica{
+	width: 100%;
+	max-width: 1200px;
+	border:1px solid gray;
+
+}
+
+.highcharts-background{
+	background: #000;
+}
+
+.highcharts-color-0{
+	fill: #90ed7d;
+	stroke: #90ed7d;
+	color:#FFF;
+}
+.xaxis{
+	color:$FFF;
+	fill: #90ed7d;
+	stroke: #90ed7d;
+}

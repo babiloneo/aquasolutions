@@ -1,0 +1,88 @@
+<!--
+<div class="cuerpo">
+	<div class="col-lg-6">
+		<h1>{{title}}</h1>
+
+		<div class="alert alert-success" *ngIf="status == 'success'">
+			Registro completado correctamente, <a [routerLink]="['/login']">Identificate aqui</a>
+		</div>
+
+		<div class="alert alert-danger" *ngIf="status == 'error'">
+			No te has registrado correctamente
+		</div>
+
+		<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-10">
+			<p>
+				<label>Nombre</label>
+				<input type="text" name="nombre" #name="ngModel" [(ngModel)]="user.nombre" class="form-control" required>
+				<span *ngIf="!name.valid && name.touched">
+					El nombre es obligatorio
+				</span>
+			</p>
+			<p>
+				<label>Apellido Materno</label>
+				<input type="text" name="materno" #materno="ngModel" [(ngModel)]="user.materno" class="form-control" required>
+				<span *ngIf="!materno.valid && materno.touched">
+					Apellido materno obligatorio
+				</span>
+			</p>
+			<p>
+				<label>Apellido Paterno</label>
+				<input type="text" name="paterno" #paterno="ngModel" [(ngModel)]="user.paterno" class="form-control" required>
+				<span *ngIf="!paterno.valid && paterno.touched">
+					Apellido paterno obligatorio
+				</span>
+			</p>
+			<p>
+				<label>Telefono</label>
+				<input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono" class="form-control" required>
+				<span *ngIf="!telefono.valid && telefono.touched">
+					Telefono obligatorio
+				</span>
+			</p>
+			<p>
+				<label>Email</label>
+				<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+				<span *ngIf="!email.valid && email.touched">
+					El email es obligatorio
+				</span>
+			</p>
+			<p>
+				<label>Contraseña</label>
+				<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
+				<span *ngIf="!password.valid && password.touched">
+					La contraseña es obligatoria
+				</span>
+			</p>
+
+			<input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+		</form>
+	</div>
+</div>
+-->
+<div class="cuerpo">
+
+<section id="formulario">
+<div class="salt">
+
+</div>
+	
+	<br>
+	<p id="titulo"> Formulario de registro</p>
+    
+
+    <form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+
+      <input type="text" id="usuario" name="usuario" placeholder="Nombre">
+      <input type="text" id="usuario" name="usuario" placeholder="Apellido Paterno">
+      <input type="text" id="usuario" name="usuario" placeholder="Apellido Materno">
+      <input type="text" id="usuario" name="usuario" placeholder="Telefono">
+      <input type="text" id="usuario" name="usuario" placeholder="E-mail">
+      <input type="text" id="usuario" name="usuario" placeholder="Contraseña">
+
+      <input type="submit" href="inicio.html" value="Registrar"  >
+      <td class="ini"></td>
+
+    </form>
+</section>
+</div> <!--fin del cuerpo-->

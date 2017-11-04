@@ -1,0 +1,259 @@
+
+body {
+	margin: 0;
+	height: 1000;
+	background-color: #ffffff;
+}
+
+
+
+.menu{
+	width: 100%;
+	height: 50px;
+	background-color: #172646;
+}
+
+.limite{
+	width: 1200px;
+	height: 60px;
+	margin: 0 auto;
+	
+	
+}
+
+.linea{
+	width: 100%;
+	height: 150px;
+	background-color: #3db7ef;
+}
+
+.clogo{
+	width: 500px;
+	height: 150px;
+	margin:0 auto;
+}
+.log{
+	display: flex;
+	margin:0 auto;
+	padding-top:  15px;
+
+	
+}
+
+.tabla{
+	
+	width: 800px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.cbot{
+	width: 110px;
+	height: 50px;
+	margin-left: 1090px;
+	margin-top: -40px;
+}
+
+#secciones{
+
+  width: 800px;
+  padding-top: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#secciones td {
+  display: inline;
+}
+
+#secciones td a {
+  font-family: Gadugi;
+  font-size:14px;
+  text-decoration: none;
+  padding: 10px;
+  color: #fff;
+}
+
+#secciones td a:hover {
+   color: #000;
+   background-color: #fff;
+
+}
+
+.logout{
+	width: 85px;
+	height: 35px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+
+button {  /* boton salir*/
+
+	width: 85px;
+	height: 30px;
+   	color: white;
+   	font-family: Trebuchet MS;
+   	font-size: 14px;
+  	display: inline-block;
+  	text-decoration: none;
+   	border: 1px solid white;
+   	cursor: pointer;
+	background-color: #3db7ef;
+}
+
+
+.cuerpo{
+	width: 1200px;
+	margin: auto;
+}
+
+.banner {
+	width: 1200px;
+	height: 299px;
+	margin: auto;
+	
+}
+
+p {
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: #4d4f54;
+}
+
+p.pblanco{
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: white;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+.ladoizq{
+	width:700px;
+	height:600px;
+	float: left;
+	
+
+}
+
+.denizq{
+	
+	width:660px;
+	height:410px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.ladoder{
+	
+	width:500px;
+	height:600px;
+	float: right;
+
+}
+
+.cont-estadistica{
+	width: 420px;
+	height: 410px;
+	margin:0 auto;
+	margin-top: 100px;
+	background-color: #172646;
+}
+
+.arrib{
+	width: 400px;
+	height: 200px;
+	
+	margin: auto;
+	
+}
+
+.grf{
+	margin-top: 10px;
+}
+
+.abaj{
+	width: 400px;
+	height: 170px;
+	margin: auto;
+	margin-top: 25px;
+}
+
+
+.pie{
+	width: 100%;
+	height: 180px;
+	background-color: #172646;
+	margin-top: 670px;
+
+}
+
+.pielimit{
+
+	width: 1200px;
+	height: 180px;
+	margin: 0 auto;
+}
+
+.pieizq{
+
+	width: 265px;
+	height: 180px;
+	float: left;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.piecentro {
+	width: 670px;
+	height: 180px;
+	float: left;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.info {
+	text-align: justify;
+    font-family: Trebuchet MS;
+    font-size:16px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pieder {
+	width: 265px;
+	height: 180px ;
+	float: left;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	
+}
+
+.red{
+	padding-left: 5px;
+	float: left;
+}

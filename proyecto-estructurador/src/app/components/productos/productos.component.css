@@ -1,0 +1,113 @@
+
+.cuerpo{
+	width: 1200px;
+	margin: auto;
+}
+
+
+p {
+
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: #4d4f54;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: white;
+	text-align: center;
+}
+
+h1#tit {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+.contenedor{
+	width: 1200px;
+	height: 700px;
+
+}
+
+.esp{
+	width: 100px;
+	height: 400px;
+	float: left;
+}
+
+.cimg{
+	width: 150px;
+	height: 150px;
+	margin-left: 150px;
+}
+
+.conizq{
+	width: 450px;
+	height: 400px;
+	background-color: #172645;
+	float: left;
+	
+}
+
+.conder{
+	width: 450px;
+	height: 400px;
+	background-color: #172645;
+	float: left;
+	
+}
+
+.conizq:hover{
+background-color: #3cb7f0;
+}
+
+.conder:hover{
+background-color: #3cb7f0;
+}
+
+.texcon{
+	width: 400px;
+	margin: 0 auto;
+}
+
+
+input[id="salir"]{
+	width: 40px;
+	height: 25px;
+	font-size: 1.1em;
+	font-family: gadugi;
+
+}
+
+input[id="serv"]{ /*boton adquirir producto*/
+	margin-top: 10px;
+	margin-left: 235px;
+	width:200px;
+	height: 40px;
+	border:0px;
+	background-color: #40dc6e;
+	color: white;
+	font-size: 1.0em;
+	cursor: pointer;
+
+}
+
+.info {
+	text-align: justify;
+    font-family: Trebuchet MS;
+    font-size:16px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,104 @@
+span{
+	color: #fff;
+}
+.anuncio{
+	width: 400px;
+	margin: 25px auto;
+
+}
+
+.cuerpo{
+	width: 100%;
+	max-width: 1200px;
+	height: 500px;
+	margin: 0 auto;
+}
+
+p {
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: #4d4f54;
+}
+
+p.pblanco{
+	text-align: justify;
+	line-height: 1.5;
+    font-family: calibri;
+    font-size:18px;
+    color: white;
+}
+
+h1 {
+	font-family: Gadugi;
+	color: #4d4f54;
+	text-align: center;
+}
+
+
+h2 {
+	font-family: Trebuchet MS;
+	color: #4d4f54;
+	text-align: center;
+}
+
+section#formulario{
+
+	margin: auto;
+	margin-top: 60px;
+	width:400px;
+	height: 400px;
+	background-color: #172646;
+
+}
+
+
+
+input[type="text"], input[type="password"], input[type="mail"]{
+	width: 360px;
+	height: 40px;
+	margin-left: 20px;
+	margin-top:20px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	outline: none;
+	border:0px;
+	background-color: #fff;
+
+}
+
+input[type="submit"]{
+	margin:20px;
+	margin-bottom: 20px;
+	width:360px;
+	height: 50px;
+	border:0px;
+	background-color: #3db7ef;
+	color: white;
+	font-size: 1.2em;
+	cursor: pointer;
+
+}
+
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: #2d3e50;
+}
+
+
+a.indown{
+  font-family: calibri;
+  font-size:18px;
+  text-decoration: none;
+  float:left;
+  padding-left: 120px;
+  color: #ffffff;
+
+}
+
+.img-usuario{
+	margin-left: 160px;
+}
+
+
