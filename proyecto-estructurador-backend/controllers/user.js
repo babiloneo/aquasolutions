@@ -90,15 +90,31 @@ function login(req,res){
 	var email = params.email;
 	var pass = params.password;
 
-
+    var salt = bcrypt.genSaltSync();
 	User.findOne({Usu_Email:email.toLowerCase()}, (err,user)=>{
 		if(err){
-			res.status(500).send({message:'Error al comprobar que el usuario existe'});
+			res.status(500).send({message:'El al intentar loguearse'});
 		}else{
 			if(user){
-				bcrypt.compare(pass,user.Usu_Password,(err,check) =>{
 
-					if(!check){
+				bcrypt.hash(pass, salt, function(err, hash) {
+				    if (err) {
+				    	res.status(500).send({message:err});
+				    }else{
+
+					    bcrypt.compare(user.Usu_Password, hash, function(err, result) {
+					        if (err) { 
+					        	res.status(500).send({error:err}); 
+					        }else{
+						        res.status(200).send({message:result});
+					        }
+					    });
+				    }
+				});
+
+				/*bcrypt.compare(pass,user.Usu_Password,(err,check) =>{
+
+					if(check){
 						//comprobar y generar token
 						if(params.gettoken){
 							//devolver token
@@ -111,15 +127,15 @@ function login(req,res){
 						}
 					}else{
 						res.status(404).send({
-							message:'El usuario no ha podido loguearse correctamente',
+							message:'La contraseña es incorrecta',
 							password1:pass,
 							password2:user.Usu_Password
 						});
 					}
-				});
+				});*/
 			}else{
 				res.status(404).send({
-					message: 'El usuario no ha podido loguearse'
+					message: 'El usuario no existe'
 				});
 			}
 		} 
