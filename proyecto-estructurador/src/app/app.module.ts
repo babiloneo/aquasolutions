@@ -20,10 +20,10 @@ import { VentasComponent } from './components/venta/venta.component';
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { LinealComponent } from './components/graficos/lineal.component';
 
-export function highchartsModules() {
+/*export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [ exporting ];
-}
+}*/
 
 
 @NgModule({
@@ -47,9 +47,8 @@ export function highchartsModules() {
     Ng2CarouselamosModule,
     ChartModule
   ],
-  providers: [
-  { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules },
-  appRoutingProviders],
+  providers:
+  appRoutingProviders,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
