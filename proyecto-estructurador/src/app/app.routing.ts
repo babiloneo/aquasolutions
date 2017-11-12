@@ -12,7 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { VentasComponent } from './components/venta/venta.component';
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { LinealComponent } from './components/graficos/lineal.component';
-
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 const appRoutes: Routes =[
 	//{path: '', component: HomeComponent}, //ruta por defecto
@@ -26,8 +26,8 @@ const appRoutes: Routes =[
 	{path: 'ventas', component: VentasComponent},
 	{path: 'mantenimiento', component: MantenimientoComponent},
 	{path: 'graf-lineal', component: LinealComponent},
+	{path: 'mis-datos', component: UserEditComponent},
 	//{path: 'tienda', component: TiendaComponent},
-	{path: '**', component: HomeComponent}//cuando la ruta falle o intentemos cargar una pagina que no existe
 
 ];
 

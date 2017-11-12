@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { VentasComponent } from './components/venta/venta.component';
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { LinealComponent } from './components/graficos/lineal.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 /*export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -37,7 +38,8 @@ import { LinealComponent } from './components/graficos/lineal.component';
     LoginComponent,
     VentasComponent,
     MantenimientoComponent,
-    LinealComponent
+    LinealComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

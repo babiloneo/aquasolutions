@@ -24,9 +24,12 @@ import { User } from '../../models/user';
  			this.user = new User('','','','','','','admin',false,'','');
 
  		}
+ 		0
 
  		ngOnInit(){
  			console.log('Login cargado');
+ 			console.log(this._userService.getIdentity());
+ 			console.log(this._userService.getToken());
  		}
 
  		onSubmit(){
@@ -38,9 +41,7 @@ import { User } from '../../models/user';
  					if(!this.identity || !this.identity._id){
  						alert('El usuario no se a logueado correctamente');
  					}else{
- 					//mostrar identity
- 					this.identity.password='';
- 					console.log(this.identity);	
+ 						localStorage.setItem('identity',JSON.stringify(this.identity));
 
  						//conseguir el tokken
 			 			this._userService.signup(this.user,'true').subscribe(
@@ -51,8 +52,9 @@ import { User } from '../../models/user';
 			 						alert('El toekn no se ha generado');
 			 					}else{
 			 						//mostrar token
-			 						console.log(this.token);
+			 						localStorage.setItem('token',this.token);
 			 						this.status='success';
+			 						this._router.navigate(['/']);
 			 					}
 			 				},
 			 				error =>{

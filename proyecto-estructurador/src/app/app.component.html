@@ -5,8 +5,41 @@
   </div>
 
 </div>
+<div class="menu">
+  <div class="limite">
+    <nav>
+        <a [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a>
+        <a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a>
+        <a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a>
+        <a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a>
+        <a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a>
+        <a style="width: 15%;" *ngIf="identity" [routerLinkActive]="['active']">MI ALBERCA</a>   
+    </nav>
 
+    <div class="usuario" *ngIf="identity">
 
+        <div class="avatar">
+          <img src="{{url + 'get-image-file/'+identity.Usu_Image}}">    
+        </div>  
+
+        <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
+
+        <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
+
+    </div>
+
+    <div class="usuario" *ngIf="!identity">
+
+        <a [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
+
+        <a [routerLink]="['/login']" [routerLinkActive]="['active']" >LOGIN</a>
+
+    </div>
+
+  </div>
+</div>
+
+<!--
 <div class="menu" >
 
   <div class="limite">
@@ -18,22 +51,38 @@
       <td ><a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a></td>
       <td ><a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a></td>
       <td ><a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a></td>
-      <td ><a [routerLink]="['/graf-lineal']">GRAFICA</a></td>
-      <td ><a >PANEL DE CONTROL</a></td>
+      <td ><a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a></td>
+      
+      <td *ngIf="identity"><a [routerLinkActive]="['active']">PANEL DE CONTROL</a></td>
+
+      <td *ngIf="!identity">
+        <a [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
+      </td>
+
+      <td *ngIf="!identity">
+        <a [routerLink]="['/login']" [routerLinkActive]="['active']" >LOGIN</a>
+      </td>
+
+      <td *ngIf="identity">
+        <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
+      </td>
+
+
+      <td *ngIf="identity">
+        <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
+      </td>
+      <td *ngIf="identity">
+        <a>
+          <img src="{{url + 'get-image-file/'+identity.Usu_Image}}" style="width: 35px; height: 35px; border-radius: 500px;">    
+        </a>           
+      </td>
   </tr>
 
   </table>
 
   </div>
-    <div class="cbot"> 
 
-      <div  class="logout">
-        <a [routerLink]="['/register']">REGISTRO</a>
-        <a [routerLink]="['/login']">LOGIN</a>
 
-      </div>
-
-    </div>
   </div>
 </div><!--fin menu -->
 
@@ -104,3 +153,5 @@
   </div>
 
 </div> <!--fin pie-->
+
+

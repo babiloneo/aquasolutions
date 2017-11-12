@@ -43,7 +43,7 @@ function saveUser(req,res){
 			}else{
 				if(!issetUser){
 					//Ciframos contrasena
-					bcrypt.hash(params.params, null , null , function(err,hash){
+					bcrypt.hash(params.password, null , null , function(err,hash){
 						user.Usu_Password = hash;
 
 						//guardo usuario en base de datos
@@ -71,13 +71,6 @@ function saveUser(req,res){
 	}else{
 		res.status(200).send({
 			message:'Introduce los datos correctamente para registrar al usuario',
-			nombre:params.nombre,
-			materno:params.materno,
-			paterno:params.paterno,
-			telefono:params.telefono,
-			email:params.email,
-			password:params.password,
-			jaja:'creuel vida'
 		});	
 	}
 
@@ -90,29 +83,13 @@ function login(req,res){
 	var email = params.email;
 	var pass = params.password;
 
-    var salt = bcrypt.genSaltSync();
 	User.findOne({Usu_Email:email.toLowerCase()}, (err,user)=>{
 		if(err){
 			res.status(500).send({message:'El al intentar loguearse'});
 		}else{
 			if(user){
 
-				bcrypt.hash(pass, salt, function(err, hash) {
-				    if (err) {
-				    	res.status(500).send({message:err});
-				    }else{
-
-					    bcrypt.compare(user.Usu_Password, hash, function(err, result) {
-					        if (err) { 
-					        	res.status(500).send({error:err}); 
-					        }else{
-						        res.status(200).send({message:result});
-					        }
-					    });
-				    }
-				});
-
-				/*bcrypt.compare(pass,user.Usu_Password,(err,check) =>{
+				bcrypt.compare(pass,user.Usu_Password, function(err,check){
 
 					if(check){
 						//comprobar y generar token
@@ -128,11 +105,11 @@ function login(req,res){
 					}else{
 						res.status(404).send({
 							message:'La contraseña es incorrecta',
-							password1:pass,
-							password2:user.Usu_Password
+
 						});
 					}
-				});*/
+				});
+
 			}else{
 				res.status(404).send({
 					message: 'El usuario no existe'
