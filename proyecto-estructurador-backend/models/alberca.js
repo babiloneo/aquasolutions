@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-AlbercaSchema({
+var AlbercaSchema = Schema({
 	Alb_Nombre: String,
 	Alb_Capacidad: String,
 	Alb_Ubicacion: String,

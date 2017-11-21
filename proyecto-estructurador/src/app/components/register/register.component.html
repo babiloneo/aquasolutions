@@ -1,88 +1,113 @@
-<!--
-<div class="cuerpo">
-	<div class="col-lg-6">
-		<h1>{{title}}</h1>
 
+<div class="cuerpo">
+	
+	<div class="alertas">
 		<div class="alert alert-success" *ngIf="status == 'success'">
 			Registro completado correctamente, <a [routerLink]="['/login']">Identificate aqui</a>
 		</div>
 
 		<div class="alert alert-danger" *ngIf="status == 'error'">
-			No te has registrado correctamente
+			{{message}}
 		</div>
-
-		<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-10">
-			<p>
-				<label>Nombre</label>
-				<input type="text" name="nombre" #name="ngModel" [(ngModel)]="user.nombre" class="form-control" required>
-				<span *ngIf="!name.valid && name.touched">
-					El nombre es obligatorio
-				</span>
-			</p>
-			<p>
-				<label>Apellido Materno</label>
-				<input type="text" name="materno" #materno="ngModel" [(ngModel)]="user.materno" class="form-control" required>
-				<span *ngIf="!materno.valid && materno.touched">
-					Apellido materno obligatorio
-				</span>
-			</p>
-			<p>
-				<label>Apellido Paterno</label>
-				<input type="text" name="paterno" #paterno="ngModel" [(ngModel)]="user.paterno" class="form-control" required>
-				<span *ngIf="!paterno.valid && paterno.touched">
-					Apellido paterno obligatorio
-				</span>
-			</p>
-			<p>
-				<label>Telefono</label>
-				<input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono" class="form-control" required>
-				<span *ngIf="!telefono.valid && telefono.touched">
-					Telefono obligatorio
-				</span>
-			</p>
-			<p>
-				<label>Email</label>
-				<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
-				<span *ngIf="!email.valid && email.touched">
-					El email es obligatorio
-				</span>
-			</p>
-			<p>
-				<label>Contraseña</label>
-				<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
-				<span *ngIf="!password.valid && password.touched">
-					La contraseña es obligatoria
-				</span>
-			</p>
-
-			<input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid">
-		</form>
 	</div>
-</div>
--->
-<div class="cuerpo">
 
-<section id="formulario">
-<div class="salt">
+	<section id="formulario">
+	<div class="salt">
 
-</div>
-	
-	<br>
-	<p id="titulo"> Formulario de registro</p>
-    
+	</div>
+		
+		<br>
+		<p id="titulo"> Formulario de registro</p>
+	    
 
-    <form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+	    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" name="registerForm">
 
-      <input type="text" id="usuario" name="usuario" placeholder="Nombre">
-      <input type="text" id="usuario" name="usuario" placeholder="Apellido Paterno">
-      <input type="text" id="usuario" name="usuario" placeholder="Apellido Materno">
-      <input type="text" id="usuario" name="usuario" placeholder="Telefono">
-      <input type="text" id="usuario" name="usuario" placeholder="E-mail">
-      <input type="text" id="usuario" name="usuario" placeholder="Contraseña">
+			<div class="padre">
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" #name="ngModel" [(ngModel)]="user.nombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+				<span *ngIf="!name.valid && name.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  El nombre es obligatorio
+				</span>
+			</div>
 
-      <input type="submit" href="inicio.html" value="Registrar"  >
-      <td class="ini"></td>
+			<div>
+				<label for="paterno">Apellido Paterno</label>
+		    	<input type="text" name="paterno" placeholder="Apellido Paterno" #paterno="ngModel" [(ngModel)]="user.paterno" class="form-control" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
 
-    </form>
-</section>
+		      	<span *ngIf="!paterno.valid && paterno.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Apellido paterno obligatorio
+				</span>				
+			</div>
+
+
+			<div>
+				<label for="materno">Apellido Materno</label>
+		      	<input type="text" name="materno" placeholder="Apellido Materno" #materno="ngModel" [(ngModel)]="user.materno" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+
+		  		<span *ngIf="!materno.valid && materno.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Apellido materno obligatorio
+				</span>				
+			</div>
+
+			<div>
+				<label for="telefono">Telefono</label>
+				<input type="text" name="telefono" placeholder="Telefono" #telefono="ngModel" [(ngModel)]="user.telefono" class="form-control" minlength="7" maxlength="10" pattern="[0-9]*" required>
+
+				<span *ngIf="!telefono.valid && telefono.touched" tooltip="Solo se permite numeros entre 7 y 10 caracteres"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Telefono obligatorio
+				</span>
+			</div>
+
+			<div>
+				<label for="email">E-Mail</label>
+				<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="E-Mail" minlength="5" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+				<span *ngIf="!email.valid && email.touched" tooltip="Utilize el siguiente  formato: alguien@example.com"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Complete este campo Corectamente
+				</span>
+
+			</div>
+
+
+			<div>
+				<label for="empresa">Empresa</label>
+				<input type="text" name="empresa" #empresa="ngModel" [(ngModel)]="user.empresa" class="form-control" placeholder="E-Mail" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+				<span *ngIf="!empresa.valid && empresa.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Complete este campo Corectamente
+				</span>
+
+			</div>
+
+			
+			<div>
+				<label for="password">Contraseña</label>
+				<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="Contraseña" minlength="8" maxlength="30" pattern="[A-Za-z0-9!?-]{8,30}" required>
+				<span *ngIf="!password.valid && password.touched" tooltip="La contraseña debe contener minimo 8 caracteres"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  La contraseña es obligatoria
+				</span>
+			</div>
+
+	      	<input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+	    </form>
+	</section>
 </div> <!--fin del cuerpo-->

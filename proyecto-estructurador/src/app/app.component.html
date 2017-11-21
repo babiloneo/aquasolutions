@@ -5,113 +5,142 @@
   </div>
 
 </div>
-<div class="menu">
-  <div class="limite">
+
+<div class="menu1" *ngIf="menu">
+  <div class="menu">
+    <div class="limite">
+      <nav>
+          <a [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a>
+          <a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a>
+          <a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a>
+          <a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a>
+          <a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a>
+          <a style="width: 15%;" *ngIf="identity" [routerLink]="['/admin']" [routerLinkActive]="['active']" (click)="onMenu2()">MI ALBERCA</a>   
+      </nav>
+
+      <div class="usuario" *ngIf="identity">
+
+          <div class="avatar">
+            <img src="{{url + 'get-image-file/'+identity.Usu_Image}}">    
+          </div>  
+
+          <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
+
+          <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
+
+      </div>
+
+      <div class="usuario" *ngIf="!identity">
+
+          <a [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
+
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']" >LOGIN</a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!--Seccion de en medio -->
+  <div class="banner">
+    <div ng2-carouselamos class="slides-wrapper" 
+    [items]="items"
+    [width]="1200"
+    [$prev]="prev"
+    [$next]="next"
+    [$item]="item">
+    </div>
+
+    <ng-template #prev>
+      <img src="./assets/images/prev.svg" id="left" />
+    </ng-template>
+
+    <ng-template #next>
+      <img src="./assets/images/next.svg" id="right" />
+    </ng-template>
+
+    <ng-template #item let-item let-i="index">
+      <div class="items">
+          <img src="{{item.name}}" class="imgb">
+      </div>
+    </ng-template>
+
+  </div>  
+</div>
+
+<div class="menu2" *ngIf="!menu">
+    <div class="titulo">
+      <h1>{{miTitulo}}</h1>
+    </div>
+    <div class="btn-salir">
+      <a [routerLink]="['/home']" (click)="onMenu1()" [routerLinkActive]="['active']">Salir</a> 
+    </div>
+ 
+</div>
+
+  <div class="secciones" *ngIf="miTitulo=='Usuarios'">
     <nav>
-        <a [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a>
-        <a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a>
-        <a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a>
-        <a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a>
-        <a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a>
-        <a style="width: 15%;" *ngIf="identity" [routerLinkActive]="['active']">MI ALBERCA</a>   
+      <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
+      <a [routerLink]="['/miembros']" [routerLinkActive]="['active']">Buscar usuario</a>
+      <a [routerLink]="['/registrarmiembro']" [routerLinkActive]="['active']">Registrar usuario</a>
+      <a [routerLink]="['/editar_miembro']" [routerLinkActive]="['active']">Editar usuario</a>
+    </nav>    
+  </div>
+
+  <div class="secciones" *ngIf="miTitulo=='Albercas'">
+    <nav>
+      <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
+      <a [routerLink]="['/buscar_alberca']" [routerLinkActive]="['active']">Buscar alberca</a>
+      <a [routerLink]="['/registrar_alberca']" [routerLinkActive]="['active']">Registrar alberca</a>
+      <a [routerLink]="['/editar_alberca']" [routerLinkActive]="['active']">Editar albercas</a>
     </nav>
+  </div>
 
-    <div class="usuario" *ngIf="identity">
+  <div class="secciones" *ngIf="miTitulo=='Sensores'">
+    <nav>
+      <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
+      <a [routerLink]="['/buscar_sensor']" [routerLinkActive]="['active']">Buscar sensor</a>
+      <a [routerLink]="['/editar_sensor']" [routerLinkActive]="['active']">Editar sensor</a>
+    </nav>
+  </div>
 
-        <div class="avatar">
-          <img src="{{url + 'get-image-file/'+identity.Usu_Image}}">    
-        </div>  
+  <div class="secciones" *ngIf="miTitulo=='Mantenimiento'">
+    <nav>
+      <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
+      <a [routerLink]="['/buscar_mante']" [routerLinkActive]="['active']">Buscar registro</a>
+      <a [routerLink]="['/registrar_mante']" [routerLinkActive]="['active']">Crear registro</a>
+      <a [routerLink]="['/editar_mante']" [routerLinkActive]="['active']">Editar registro</a>
+    </nav>
+  </div>
 
-        <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
 
-        <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
+  <div class="contenedor" *ngIf="!menu && cuerpo">    
+ 
+    <div class="main">
+      <div class="cimg" id="i1" (click)="activeClientes()" [routerLink]="['/miembros']">
+        <p class="selec"> Clientes</p>
+        <img src="./assets/images/clientes.png">
+    </div>
+
+      <div class="cimg" (click)="activeAlberca()" [routerLink]="['/buscar_alberca']" [routerLinkActive]="['active']">
+        <p class="selec"> Albercas</p>
+        <img src="./assets/images/alberca2.png">
+      </div>
+
+      <div class="cimg" (click)="activeSensor()" [routerLink]="['/buscar_sensor']">
+        <p class="selec"> Sensores</p>
+        <img src="./assets/images/sensor.png">
+      </div>
+
+      <div class="cimg" (click)="activeMantenimiento()" [routerLink]="['/buscar_mante']">
+        <p class="selec"> Mantenimientos</p>
+        <img src="./assets/images/manteni.png">
+      </div>
 
     </div>
 
-    <div class="usuario" *ngIf="!identity">
-
-        <a [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
-
-        <a [routerLink]="['/login']" [routerLinkActive]="['active']" >LOGIN</a>
-
-    </div>
-
-  </div>
-</div>
-
-<!--
-<div class="menu" >
-
-  <div class="limite">
-
-  <div class="tabla">
-  <table id="secciones">
-  <tr>
-    <td ><a [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a></td>
-      <td ><a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a></td>
-      <td ><a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a></td>
-      <td ><a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a></td>
-      <td ><a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a></td>
-      
-      <td *ngIf="identity"><a [routerLinkActive]="['active']">PANEL DE CONTROL</a></td>
-
-      <td *ngIf="!identity">
-        <a [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
-      </td>
-
-      <td *ngIf="!identity">
-        <a [routerLink]="['/login']" [routerLinkActive]="['active']" >LOGIN</a>
-      </td>
-
-      <td *ngIf="identity">
-        <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
-      </td>
-
-
-      <td *ngIf="identity">
-        <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
-      </td>
-      <td *ngIf="identity">
-        <a>
-          <img src="{{url + 'get-image-file/'+identity.Usu_Image}}" style="width: 35px; height: 35px; border-radius: 500px;">    
-        </a>           
-      </td>
-  </tr>
-
-  </table>
-
   </div>
 
-
-  </div>
-</div><!--fin menu -->
-
-
-<!--Seccion de en medio -->
-<div class="banner">
-  <div ng2-carouselamos class="slides-wrapper" 
-  [items]="items"
-  [width]="1200"
-  [$prev]="prev"
-  [$next]="next"
-  [$item]="item">
-  </div>
-
-<ng-template #prev>
-  <img src="./assets/images/prev.svg" id="left" />
-</ng-template>
-
-<ng-template #next>
-  <img src="./assets/images/next.svg" id="right" />
-</ng-template>
-
-<ng-template #item let-item let-i="index">
-  <div class="items">
-      <img src="{{item.name}}" class="imgb">
-  </div>
-</ng-template>
-
-</div>
 
 <router-outlet></router-outlet>
 
@@ -153,5 +182,3 @@
   </div>
 
 </div> <!--fin pie-->
-
-

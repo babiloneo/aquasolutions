@@ -14,7 +14,8 @@ var UserSchema = Schema({
     Usu_Role : String,
     Usu_Estado : Boolean,
     Usu_Password : String,
-    Usu_Image: String
+    Usu_Image: String,
+    Usu_Empresa: String
 });
 
 module.exports = mongoose.model('User',UserSchema);//entidad

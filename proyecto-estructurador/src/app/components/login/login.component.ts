@@ -15,16 +15,17 @@ import { User } from '../../models/user';
  	public identity;
  	public token;
  	public status: string;
+ 	public message: string;
  	constructor(
  		private _route: ActivatedRoute,
  		private _router:Router,
  		private _userService:UserService
  		){
  			this.title = 'Login';
- 			this.user = new User('','','','','','','admin',false,'','');
+ 			this.user = new User('','','','','','','','admin',false,'','');
 
  		}
- 		0
+ 		
 
  		ngOnInit(){
  			console.log('Login cargado');
@@ -39,7 +40,8 @@ import { User } from '../../models/user';
  					this.identity = response.user;
 
  					if(!this.identity || !this.identity._id){
- 						alert('El usuario no se a logueado correctamente');
+ 						this.status="error";
+ 						this.message=response.message;
  					}else{
  						localStorage.setItem('identity',JSON.stringify(this.identity));
 
@@ -50,6 +52,7 @@ import { User } from '../../models/user';
 
 			 					if(this.token.lenght <= 0){
 			 						alert('El toekn no se ha generado');
+
 			 					}else{
 			 						//mostrar token
 			 						localStorage.setItem('token',this.token);
@@ -65,7 +68,6 @@ import { User } from '../../models/user';
  				},
  				error =>{
  					var errorMessage =<any>error;
-
  					if(errorMessage != null){
  						var body = JSON.parse(error._body);
  						this.status = 'error';

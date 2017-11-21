@@ -1,10 +1,10 @@
 
 <div class="cuerpo">
 
-	<div class="anuncio">
+	<div class="alertas">
 
 		<div class="alert alert-danger" *ngIf="status == 'error'">
-			No te has identificado correctamente
+			{{message}}
 		</div>
 	</div>
 
@@ -16,13 +16,30 @@
 
 		<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
 
-			<input type="text" id="usuario" name="usuario" placeholder="usuario" #email="ngModel" [(ngModel)]="user.email" required>
+			<div class="inp">
+				<input type="text"  name="email" placeholder="usuario" #email="ngModel" [(ngModel)]="user.email" minlength="5" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+			
+				<span *ngIf="!email.valid && email.touched" tooltip="Utilize el siguiente  formato: alguien@example.com"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Complete este campo Corectamente
+				</span>
+			</div>
 
-			<input type="password" id="password" name="password" placeholder="Contraseña" #password="ngModel" [(ngModel)]="user.password" required>
+			<div class="inp">
+				<input type="password" name="password" placeholder="Contraseña" #password="ngModel" [(ngModel)]="user.password" placeholder="Contraseña" minlength="8" maxlength="30" pattern="[A-Za-z0-9!?-]{8,30}" required>
 
-
+				<span *ngIf="!password.valid && password.touched" tooltip="La contraseña debe contener minimo 8 caracteres"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  La contraseña es obligatoria
+				</span>
+			</div>
+			
 			<input type="submit" value="iniciar sesion">
-			<td class="ini"></td>
+
 			<p class="tx" align="center"><a class="indown" href="index.html">Recuperar contraseña</a></p>
 		</form>
 	</section>

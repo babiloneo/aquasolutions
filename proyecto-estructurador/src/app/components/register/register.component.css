@@ -1,166 +1,68 @@
-.menu{
-	width: 100%;
-	height: 50px;
-	background-color: #172646;
-}
-
-.limite{
-	width: 1200px;
-	height: 60px;
-	margin: 0 auto;
-	
-	
-}
-
-.linea{
-	width: 100%;
-	height: 150px;
-	background-color: #3db7ef;
-}
-
-.clogo{
-	width: 500px;
-	height: 150px;
-	margin:0 auto;
-}
-.log{
-	display: flex;
-	margin:0 auto;
-	padding-top:  15px;
-
-	
-}
-
-.tabla{
-	
-	width: 800px;
-	height: 40px;
-	margin: 0 auto;
-}
-
-.cbot{
-	width: 110px;
-	height: 50px;
-	margin-left: 1090px;
-	margin-top: -40px;
-}
-
-#secciones{
-
-  width: 800px;
-  padding-top: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-#secciones td {
-  display: inline;
-}
-
-#secciones td a {
-  font-family: Gadugi;
-  font-size:14px;
-  text-decoration: none;
-  padding: 10px;
-  color: #fff;
-}
-
-#secciones td a:hover {
-   color: #000;
-   background-color: #fff;
-
-}
-
-.logout{
-	width: 85px;
-	height: 35px;
-	margin: 0 auto;
-	padding-top: 10px;
-}
-
-
-button {  /* boton salir*/
-
-	width: 85px;
-	height: 30px;
-   	color: white;
-   	font-family: Trebuchet MS;
-   	font-size: 14px;
-  	display: inline-block;
-  	text-decoration: none;
-   	border: 1px solid white;
-   	cursor: pointer;
-	background-color: #3db7ef;
-}
-
-
 .cuerpo{
 	width: 1200px;
+	margin:0 auto;
+}
+
+
+.alertas{
 	margin: auto;
+	width: 100%;
+	max-width: 480px;
+	margin-top:35px; 
 }
 
-.banner {
-	width: 1200px;
-	height: 299px;
-	margin: auto;
-	
+.alertas a{
+	color: #3db7ef;
+
 }
 
-p {
-	text-align: justify;
-	line-height: 1.5;
-    font-family: calibri;
-    font-size:18px;
-    color: #4d4f54;
-}
-
-p.pblanco{
-	text-align: justify;
-	line-height: 1.5;
-    font-family: calibri;
-    font-size:18px;
-    color: white;
-}
-
-h1 {
-	font-family: Gadugi;
-	color: #4d4f54;
-	text-align: center;
-}
-
-
-h2 {
-	font-family: Gadugi;
-	color: white;
-	text-align: center;
-}
 
 section#formulario{
 
 	margin: auto;
-	margin-top: 60px;
+	margin-top: 35px;
 	width:480px;
-	height: 650px;
 	background-color: #172646;
 	margin-bottom: 50px;
 
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 }
 
 
+p#titulo{
+	font-size: 1.6em;
+	text-align: center;
+	font-family: gadugi;
+	color: white;
 
-input[type="text"], input[type="password"], input[type="mail"]{
+	margin-top: 25px;
+
+}
+span{
+	color: #fff;
+	margin-left: 35px;
+	margin-top:30px;
+	font-size: 1.1em;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="number"]{
 	width: 410px;
 	height: 40px;
 	margin-left: 35px;
-	margin-top:30px;
 	padding-left: 20px;
 	font-size: 1.1em;
 	outline: none;
 	border:0px;
 	background-color: #fff;
+}
 
+label{
+	width: 410px;
+	color: #FFF;
+	margin-left: 35px;
+	font-size: 1.1em;
+	margin-top:30px;
 }
 
 input[type="submit"]{
@@ -173,6 +75,8 @@ input[type="submit"]{
 	color: white;
 	font-size: 1.2em;
 	cursor: pointer;
+	margin-bottom: 35px;
+
 
 }
 
@@ -181,88 +85,3 @@ input:focus, textarea:focus {
   border-color: #2d3e50;
 }
 
-
-a.indown{
-  font-family: calibri;
-  font-size:18px;
-  text-decoration: none;
-  float:left;
-  padding-left: 120px;
-  color: #ffffff;
-
-}
-
-p#titulo{
-	font-size: 1.6em;
-	text-align: center;
-	font-family: gadugi;
-	color: white;
-
-}
-
-.img-usuario{
-	margin-left: 150px;
-}
-
-
-
-
-.pie{
-	width: 100%;
-	height: 180px;
-	background-color: #172646;
-	margin-top: 110px;
-
-}
-
-.pielimit{
-
-	width: 1200px;
-	height: 180px;
-	margin: 0 auto;
-}
-
-.pieizq{
-
-	width: 265px;
-	height: 180px;
-	float: left;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.piecentro {
-	width: 670px;
-	height: 180px;
-	float: left;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.info {
-	text-align: justify;
-    font-family: Trebuchet MS;
-    font-size:16px;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pieder {
-	width: 265px;
-	height: 180px ;
-	float: left;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-	
-}
-
-.red{
-	padding-left: 5px;
-	float: left;
-}

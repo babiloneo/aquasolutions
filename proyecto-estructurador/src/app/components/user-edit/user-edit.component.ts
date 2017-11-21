@@ -30,6 +30,7 @@ export class UserEditComponent implements OnInit{
 		this.token = this._userService.getToken();
 		this.user = this.identity;
 		this.url = GLOBAL.url;
+
 	}
 
 	ngOnInit(){

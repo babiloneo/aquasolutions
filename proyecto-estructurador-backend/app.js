@@ -7,7 +7,8 @@ var app = express();
 
 //cargar rutas
 var user_routes=require('./routes/user');
-
+var alberca_routes= require('./routes/albercas');
+var sensor_routes=require('./routes/sensor');
 //middlewares de body-parser,se ejecuta antes que todo
 app.use(bodyParser.urlencoded({extended:false}));
 // lo que me lleque en una peticion lo convierte a Json
@@ -24,5 +25,6 @@ app.use((req,res,next) =>{
 
 //rutas base
 app.use('/api',user_routes);
-
+app.use('/api',alberca_routes);
+app.use('/api',sensor_routes);
 module.exports = app;

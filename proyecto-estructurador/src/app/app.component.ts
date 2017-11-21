@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from './services/user.services';
 import { GLOBAL } from './services/global';
@@ -9,12 +9,18 @@ import { GLOBAL } from './services/global';
   styleUrls: ['./app.component.css'],
   providers: [UserService]
 })
+
 export class AppComponent implements OnInit, DoCheck{
   items: Array<any> = [];
   public secion: String;
   public title:String;
   public identity;
   public url: string;
+  public menu: boolean;
+  public cuerpo: boolean;
+  public miTitulo: string;
+  public opc: string;
+  /*@Input('titulo') miTitulo: string;*/
 
   constructor(
       private _userService:UserService,
@@ -30,6 +36,9 @@ export class AppComponent implements OnInit, DoCheck{
 
     this.title='Aquasolutions';
     this.url=GLOBAL.url;
+    this.miTitulo="Panel Administrarivo";
+    this.cuerpo=true;
+    this.menu=true;
   }
 
   ngOnInit(){
@@ -44,5 +53,44 @@ export class AppComponent implements OnInit, DoCheck{
     localStorage.clear();
     this.identity=null;
     this._router.navigate(['/']);
+  }
+
+  onMenu2(){
+    this.menu=false;
+    this.cuerpo=true;
+  }
+
+  onMenu1(){
+    this.menu=true;
+    this.miTitulo="Panel Administrarivo";
+  }
+
+  verTitulo(event){
+    console.log('ver titulo');
+    console.log(event);
+  }
+
+  activeClientes(){
+    this.miTitulo="Usuarios";
+    this.cuerpo=false;
+  }
+
+  activeAlberca(){
+    this.miTitulo="Albercas";
+    this.cuerpo=false;
+  }
+
+  activeSensor(){
+    this.miTitulo="Sensores"
+    this.cuerpo=false;
+  }
+  activeMantenimiento(){
+    this.miTitulo="Mantenimiento";
+    this.cuerpo=false;
+  }
+
+  volveMenu2(){
+    this.cuerpo=true;
+    this.miTitulo="Panel Administrarivo";
   }
 }

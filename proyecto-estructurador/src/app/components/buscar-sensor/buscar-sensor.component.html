@@ -1,0 +1,83 @@
+<div class="contenedor">
+
+  <div class="botones">
+      <form >
+          <input type="text" [(ngModel)]="busqueda" placeholder="ID de Alberca">
+          <input type="submit" href="inicio.html" value="Buscar Alberca"  >
+      </form>
+    
+  </div>
+
+  <div class="datos">
+
+    <table class="table-hover">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>IP</th>
+          <th>Acciones</th>
+        </tr>
+
+        <tr *ngFor="let sensor of sensores | search: busqueda">
+          <td>{{sensor.Sen_Nombre}}</td>
+          <td>{{sensor.Sen_Descripcion}}</td>
+          <td>{{sensor.Sen_ip}}</td>
+
+          <td class="acciones">
+            <button class="btn btn-lg btn-success" (click)="openModal(ver)" style="margin-right:10px;">
+
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+            </button>
+
+            <ng-template #ver>
+              <div class="modal-header">
+                <h1 class="modal-title pull-left">{{sensor.Sen_Nombre}}</h1>
+                <button type="button"  class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="alberca-box">
+                  <div class="alberca-head-card">
+                    <img src="{{url+'get-image-sensor/'+sensor.Sen_Image}}" alt="">
+                  </div>
+                  <div class="alberca-data">
+                    <h3>{{sensor.Sen_ip}}</h3>
+                    <p>{{sensor.Sen_Descripcion}}</p>
+                  </div>
+                </div>
+            </div>  
+          </ng-template>
+
+
+            <button class="btn btn-lg btn-danger" (click)="openModal(template)" style="margin-right:10px;">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar
+            </button>
+
+            <ng-template #template >
+              <div class="modal-header">
+                <h2 class="modal-title pull-left">¿Estas seguro?</h2>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <p>¿Seguro que desea eliminar este registro:  <strong>{{Sensor.Sen_Nombre}}</strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" (click)="modalRef.hide()">Cerrar</button>
+                <button type="button" class="btn btn-lg btn-danger" (click)="deleteSensor(sensor._id)" (click)="modalRef.hide()">Borrar</button>
+            </div>            
+          </ng-template>
+
+            <a class="btn btn-lg btn-primary">
+              <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sensor
+            </a>
+
+          </td>
+        </tr>
+    </table>  
+  </div>
+
+
+  </div> <!-- fin contenedor-->

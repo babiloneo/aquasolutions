@@ -26,7 +26,7 @@ function saveUser(req,res){
 	var params = req.body;
 	//asignar valores al usuario
 
-	if(params.nombre && params.materno && params.paterno && params.telefono && params.email && params.role && params.password){
+	if(params.nombre && params.materno && params.paterno && params.telefono && params.email && params.role && params.password && params.empresa){
 		user.Usu_Nombre = params.nombre;
 		user.Usu_Apellido_M = params.materno;
 		user.Usu_Apellido_P = params.paterno;
@@ -36,6 +36,7 @@ function saveUser(req,res){
 		user.Usu_Estado = params.estado;
 		user.Usu_Password = params.password;
 		user.Usu_Image = null;	
+		user.Usu_Empresa=params.empresa;
 
 		User.findOne({Usu_Email:user.Usu_Email.toLowerCase()}, (err,issetUser)=>{
 			if(err){
@@ -49,7 +50,7 @@ function saveUser(req,res){
 						//guardo usuario en base de datos
 						user.save((err,userStored) => {
 							if(err){
-								res.status(500).send({message:'Error al Guardar el Usuario'});
+								res.status(500).send({message:'Error al Guardar el Usuario,Intentelo mas tarde'});
 							}else{
 								if(!userStored){
 									res.status(404).send({message:'No se ha registrado el usuario'});
@@ -62,7 +63,7 @@ function saveUser(req,res){
 
 				}else{
 					res.status(200).send({
-						message: 'El usuario no puede registrarse'
+						message: 'Este correo ya se encuentra registrado'
 					});
 				}
 			}
@@ -103,7 +104,7 @@ function login(req,res){
 							res.status(200).send({user});
 						}
 					}else{
-						res.status(404).send({
+						res.status(200).send({
 							message:'La contraseña es incorrecta',
 
 						});
@@ -111,7 +112,7 @@ function login(req,res){
 				});
 
 			}else{
-				res.status(404).send({
+				res.status(200).send({
 					message: 'El usuario no existe'
 				});
 			}

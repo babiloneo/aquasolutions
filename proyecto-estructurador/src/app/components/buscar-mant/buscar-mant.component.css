@@ -1,0 +1,107 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ 
+.contenedor {
+	
+	width:100%;
+	max-width:1200px;
+	margin:auto;
+ 
+	/* Flexbox */
+	display:flex;
+	flex-direction: column;
+	
+
+}
+
+.datos {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+
+
+
+}
+
+th, td {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 4px;
+    padding-left:  4px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #172646;
+    color: white;
+}
+
+
+h1{
+	margin: auto;
+	color: white;
+	font-family: gadugi;
+	font-size: 1.8em;
+}
+
+.botones{
+	width: 80%;
+	margin: auto;
+	
+}
+
+.busqueda{
+	width: 80%;
+	margin: auto;
+
+	
+}
+
+input[type="text"], input[type="password"], input[type="mail"]{
+
+	width: 300px;
+	height: 40px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	font-size: 1.1em;
+	outline: none;
+	border:1px solid gray;
+	background-color: #fff;
+	
+
+}
+
+input[type="submit"]{
+
+	width:180px;
+	height: 40px;
+	margin-top: 20px;
+	margin-left: 10px;
+	border:0px;
+	background-color: #3db7ef;
+	color: white;
+	font-size: 1.0em;
+	cursor: pointer;
+
+}
+
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: #2d3e50;
+}

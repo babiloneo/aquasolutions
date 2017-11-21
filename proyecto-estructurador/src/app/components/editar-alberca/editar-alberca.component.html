@@ -1,0 +1,87 @@
+<div class="contenedor">
+
+    <div class="alertas">
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+      <h3>{{message}}</h3>
+    </div>
+
+  </div>
+
+  <div class="datos">
+      <form #buscarAlbercaForm="ngForm" (ngSubmit)="getALberca()" name="buscarAlbercaForm">
+        
+        <div>
+          <input type="text" placeholder="ID de Alberca" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
+          <span *ngIf="!buscar.valid && buscar.touched" tooltip="Introdusca la id del registro a buscar"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+              ID nesesaria
+          </span>
+        </div>
+
+        <div>
+          <input style="margin: 0px;" type="submit"  value="Buscar Alberca" lass="btn btn-primary" [disabled]="!buscarAlbercaForm.form.valid">
+        </div>
+
+      </form>    
+  </div>
+      
+
+  <div class="datos">
+
+      <form #registerAlbercaForm="ngForm" (ngSubmit)="onSubmit(registerAlbercaForm)" name="registerAlbercaForm">
+
+      <div class="padre">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" #name="ngModel" [(ngModel)]="alberca.Alb_Nombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,200}" required>
+        <span *ngIf="!name.valid && name.touched" tooltip="Solo se permiten letras, entre 3-50 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            El nombre es obligatorio
+        </span>
+      </div>
+
+      <div>
+
+        <label for="capacidad">Descripcion</label>
+          <input type="text" name="capacidad" placeholder="Capacidad" #capacidad="ngModel" [(ngModel)]="alberca.Alb_Capacidad" class="form-control" minlength="3" maxlength="200"  required>
+
+            <span *ngIf="!capacidad.valid && capacidad.touched" tooltip="Solo se permiten letras, entre 3-200 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Dato obligatorio 
+        </span>
+
+      </div>
+
+      <div>
+
+        <label for="ubicacion">Ubicacion</label>
+          <input type="text" name="ubicacion" placeholder="Ubicacion" #ubicacion="ngModel" [(ngModel)]="alberca.Alb_Ubicacion" class="form-control" minlength="3" maxlength="100" required>
+
+            <span *ngIf="!ubicacion.valid && ubicacion.touched" tooltip="Solo se permiten letras, entre 3-100 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Dato obligatorio 
+        </span>
+
+      </div>
+
+      <div>
+        <label for="imagen">Subir foto</label>
+        <input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="alberca.Alb_Image" class="form-control" (change)="fileChangeEvent($event)" >
+
+      </div>
+          <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!registerAlbercaForm.form.valid">
+
+          <input type="button" value="Cancelar" (click)="limpiarForm(registerAlbercaForm,buscarAlbercaForm)">
+
+      </form>
+  </div>
+
+</div> <!-- fin contenedor-->

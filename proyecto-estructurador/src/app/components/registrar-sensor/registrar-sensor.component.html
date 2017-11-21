@@ -1,0 +1,76 @@
+
+
+<div class="contenedor">
+
+	<div class="alertas">
+
+		<div class="alert alert-danger" *ngIf="status == 'error'">
+			<h3>{{message}}</h3>
+		</div>
+
+	</div>
+
+	<div class="datos">
+
+
+	    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" name="registerForm">
+
+			<div class="padre">
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" #name="ngModel" [(ngModel)]="sensor.Sen_Nombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,200}" required>
+				<span *ngIf="!name.valid && name.touched" tooltip="Solo se permiten letras, entre 3-50 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  El nombre es obligatorio
+				</span>
+			</div>
+
+			<div>
+
+				<label for="dscripcion">Descripcion</label>
+		    	<input type="text" name="dscripcion" placeholder="Capacidad" #dscripcion="ngModel" [(ngModel)]="sensor.Sen_Descripcion" class="form-control" minlength="3" maxlength="200"  required>
+
+		      	<span *ngIf="!dscripcion.valid && dscripcion.touched" tooltip="Solo se permiten letras, entre 3-200 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Dato obligatorio 
+				</span>
+
+			</div>
+
+			<div>
+
+				<label for="ip">IP Adrress</label>
+		    	<input type="text" name="ip" placeholder="IP Adrress" #ip="ngModel" [(ngModel)]="sensor.Sen_ip" class="form-control" minlength="3" maxlength="100" required>
+
+		      	<span *ngIf="!ip.valid && ip.touched" tooltip="Solo se permiten letras, entre 3-100 caráctere"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Dato obligatorio 
+				</span>
+
+			</div>
+
+			<div>
+				<label for="imagen">Subir foto</label>
+				<input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="sensor.Sen_Image" class="form-control" min="1" maxlength="200" (change)="fileChangeEvent($event)">
+		      	
+		      	<span *ngIf="!imagen.valid && imagen.touched" tooltip="Formatos permitidos JPG, PNG, JPEG"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Foto obligatorio 
+				</span>
+			</div>
+
+
+	      	<input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+
+	      	<input type="button" value="Cancelar" (click)="limpiarForm(registerForm)">
+
+	    </form>
+	</div>
+</div>

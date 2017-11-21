@@ -1,18 +1,21 @@
-span{
-	color: #fff;
-}
-.anuncio{
-	width: 400px;
-	margin: 25px auto;
-
-}
-
 .cuerpo{
 	width: 100%;
 	max-width: 1200px;
-	height: 550px;
 	margin: 0 auto;
 }
+
+.alertas{
+	margin: auto;
+	width: 100%;
+	max-width: 400px;
+	margin-top:35px; 
+}
+
+.alertas a{
+	color: #3db7ef;
+
+}
+
 
 p {
 	text-align: justify;
@@ -22,25 +25,10 @@ p {
     color: #4d4f54;
 }
 
-p.pblanco{
-	text-align: justify;
-	line-height: 1.5;
-    font-family: calibri;
-    font-size:18px;
-    color: white;
-}
-
-h1 {
-	font-family: Gadugi;
-	color: #4d4f54;
-	text-align: center;
-}
-
-
-h2 {
-	font-family: Trebuchet MS;
-	color: #4d4f54;
-	text-align: center;
+.img-usuario{
+	width: 80;
+	height: 80;
+	margin: 35px auto;
 }
 
 section#formulario{
@@ -48,12 +36,21 @@ section#formulario{
 	margin: auto;
 	margin-top: 60px;
 	width:400px;
-	height: 400px;
 	background-color: #172646;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 
 }
 
-
+.inp span{
+	color: #fff;
+	margin-left: 20px;
+	margin-top: 20px;
+	font-size: 1.1em;
+	border: 1px solid #172646;
+}
 
 input[type="text"], input[type="password"], input[type="mail"]{
 	width: 360px;
@@ -95,10 +92,10 @@ a.indown{
   padding-left: 120px;
   color: #ffffff;
 
+  margin-bottom:35px; 
+
 }
 
-.img-usuario{
-	margin-left: 160px;
-}
+
 
 
