@@ -1,46 +1,99 @@
-	<div class="titulo"> <h1>Clientes</h1> </div>
 
-	<div class="contenedor">
+<div class="contenedor">
 
+    <div class="alertas">
 
-
-    <div class="busqueda">
-        <form class="fa" action="script_acceso_usuario.php" method="post" name="frm_ingreso">
-
-            <input type="text" id="usuario" name="usuario" placeholder="ID de Usuario">
-
-            <input type="submit" href="inicio.html" value="Buscar usuario"  >
-
-        </form>
-      
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+      <h3>{{message}}</h3>
     </div>
 
-	<div class="datos">
+  </div>
 
-    <form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+  <div class="datos">
+      <form #buscarSocioForm="ngForm" (ngSubmit)="getSocio()" name="buscarSocioForm">
+        
+        <div>
+          <input type="text" placeholder="Nombre del socio" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
+          <span *ngIf="!buscar.valid && buscar.touched" tooltip="Introdusca la id del registro a buscar"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+              Nombre nesesaria
+          </span>
+        </div>
 
-      <input type="text" id="usuario" name="usuario" placeholder="ID">
-      <input type="text" id="usuario" name="usuario" placeholder="Direccion de Imagen">
-      <input type="text" id="nom" name="usuario" placeholder="Nombre">
-      <input type="text" id="usuario" name="usuario" placeholder="Apellido Paterno">
-      <input type="text" id="usuario" name="usuario" placeholder="Apellido Materno">
-      <input type="text" id="usuario" name="usuario" placeholder="Telefono">
-      <input type="text" id="usuario" name="usuario" placeholder="Email">
-      <input type="text" id="usuario" name="usuario" placeholder="Contraseña">
-      <input type="text" id="usuario" name="usuario" placeholder="Confirmar Contraseña">
+        <div>
+          <input style="margin: 0px;" type="submit"  value="Buscar Socio" lass="btn btn-primary" [disabled]="!buscarSocioForm.form.valid">
+        </div>
 
-    </form>
-		</div>
+      </form>    
+  </div>
 
-		<div class="botones">
-    		<form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+  <div class="datos">
+      <form #editarSocioForm="ngForm" (ngSubmit)="updateSocio()" name="editarSocioForm">
+        
 
-      			<input type="submit" href="inicio.html" value="Guardar Cambios"  >
-      			<input type="submit" href="inicio.html" value="Cancelar"  >
+      <div class="padre">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" #name="ngModel" [(ngModel)]="socio.Usu_Nombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+        <span *ngIf="!name.valid && name.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            El nombre es obligatorio
+        </span>
+      </div>
 
+      <div>
 
-    		</form>
-			
-		</div>
+        <label for="paterno">Apellido Paterno</label>
+          <input type="text" name="paterno" placeholder="Apellido Paterno" #paterno="ngModel" [(ngModel)]="socio.Usu_Apellido_P" class="form-control" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
 
-		</div> <!-- fin contenedor-->
+            <span *ngIf="!paterno.valid && paterno.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Apellido paterno obligatorio
+        </span>
+
+      </div>
+
+      <div>
+
+        <label for="materno">Apellido Materno</label>
+          <input type="text" name="materno" placeholder="Apellido Materno" #materno="ngModel" [(ngModel)]="socio.Usu_Apellido_M" class="form-control" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+
+            <span *ngIf="!materno.valid && materno.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Apellido paterno obligatorio
+        </span>
+
+      </div>
+
+      <div>
+        <label for="telefono">Telefono</label>
+        <input type="text" name="telefono" placeholder="Telefono" #telefono="ngModel" [(ngModel)]="socio.Usu_Telefono" class="form-control" minlength="7" maxlength="10" pattern="[0-9]*" required>
+
+        <span *ngIf="!telefono.valid && telefono.touched" tooltip="Solo se permite numeros entre 7 y 10 caracteres"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Telefono obligatorio
+        </span>
+      </div>
+
+      <div>
+        <label for="imagen">Subir foto</label>
+        <input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="socio.Alb_Image" class="form-control" (change)="fileChangeEvent($event)" >
+
+      </div>
+          <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!editarSocioForm.form.valid">
+
+          <input type="button" value="Cancelar" (click)="limpiarForm(editarSocioForm,buscarSocioForm)">
+
+      </form>
+  </div>
+
+</div>

@@ -47,7 +47,7 @@ const appRoutes: Routes =[
 	{path: 'buscar_alberca', component: BucarAlbercaComponent},
 	{path: 'registrar_alberca', component: RegistrarAlbercaComponent},
 	{path: 'editar_alberca', component: EditarAlbercaComponent},
-	{path: 'buscar_sensor', component: BuscarSensorComponent},
+	{path: 'buscar_sensor/:id', component: BuscarSensorComponent},
 	{path: 'registrar_sensor/:id', component: RegistrarSensorComponent},
 	{path: 'editar_sensor', component: EditarSensorComponent},
 	{path: 'buscar_mante', component: BuscarMantComponent},

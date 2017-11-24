@@ -5,6 +5,7 @@ var path = require('path');
 
 //modelos
 var User = require('../models/user');
+var Trigger = require('../models/trigger');
 var Alberca =require('../models/alberca');
 
 
@@ -16,10 +17,45 @@ function pruebas(req,res){
 		user:req.user
 	});
 }
+//1 : insert
+//2: update
+//3 :delete 
+function triggerAlberca(num,myuser,id){
+
+	var trigger = new Trigger();
+	var user = new User();
+	trigger.Usuario=myuser;
+	trigger.fecha=new Date();
+	trigger.coleccion="Albercas";
+	trigger.campo=id;
+	switch(num){
+
+		case 1:	trigger.movimiento="INSERT";
+				break;
+		case 2:	trigger.movimiento="UPDATE";
+				break;
+		case 3: trigger.movimiento="DELETE";
+				break;
+	}
+
+	trigger.save((err,tri) =>{
+		if(err){
+
+		}else{
+			if(!tri){
+				console.log("no se pudo");
+			}else{
+				console.log(tri);
+			}
+		}
+	});
+
+}
 
 function saveAlberca(req,res){
 	var alberca = new Alberca();
 	var params = req.body;
+
 
 	if(params.Alb_Nombre && params.Alb_Capacidad && params.Alb_Ubicacion){
 		alberca.Alb_Nombre = params.Alb_Nombre;
@@ -36,6 +72,7 @@ function saveAlberca(req,res){
 					res.status(500).send({message:'Error en el servidor'});
 				}else{
 					res.status(200).send({alberca:albercaStored});
+					triggerAlberca(1,req.user.sub,alberca._id,);
 				}
 			}
 		});
@@ -46,9 +83,10 @@ function saveAlberca(req,res){
 
 
 function getAlbercas(req,res){
+	var id = req.params.id;
 
 
-	Alberca.find({}).populate({path:'user'}).exec((err,albercas) =>{
+	Alberca.find({user:id}).exec((err,albercas) =>{
 		if(err){
 			res.status(500).send({message:'Eror en la peticion'});
 		}else{
@@ -89,6 +127,7 @@ function updateAlberca(req,res){
 				res.status(404).send({message:'No se ha actualizado la alberca'});
 			}else{
 				res.status(200).send({alberca:albercaUpdate});
+				triggerAlberca(2,req.user.sub,albercaUpdate._id,);
 			}
 		}
 	});
@@ -164,10 +203,12 @@ function deleteAlberca(req,res){
 				res.status(404).send({message:'No se encontro la alberca'});
 			}else{
 				res.status(200).send({alberca:albercaRemoved})
+				triggerAlberca(3,req.user.sub,albercaRemoved._id,);
 			}
 		}
 	});
 }
+
 module.exports={
 	pruebas,
 	saveAlberca,

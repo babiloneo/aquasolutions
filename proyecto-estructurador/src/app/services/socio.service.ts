@@ -4,8 +4,9 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
 
+
 @Injectable()
-export class AlbercaService  {
+export class SocioService  {
 	public url: string;
 	public identity;
 	public token;
@@ -13,19 +14,8 @@ export class AlbercaService  {
 		this.url=GLOBAL.url;
 	}
 
-	addAlberca(token,alberca){
-		let params = JSON.stringify(alberca);
-		let headers = new Headers({
-			'Content-Type':'application/json',
-			'Authorization':token
-		});
-
-		return this._http.post(this.url+'add_alberca',params,{headers:headers})
-				   .map(res => res.json());
-
-	}
-
-	getAlbercas(token,id){
+	register_socio(token,socio){
+		let params = JSON.stringify(socio);
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
@@ -33,11 +23,27 @@ export class AlbercaService  {
 
 		let options= new RequestOptions({headers:headers});
 
-		return this._http.get(this.url+'listar_albercas/'+id,options)
+
+		return this._http.post(this.url+'socio-register',params,options)
+						 .map(res => res.json());
+	}
+
+	getSocios(token,id){
+
+		let headers = new Headers({
+			'Content-Type':'application/json',
+			'Authorization':token
+		});
+
+		let options= new RequestOptions({headers:headers});
+
+		return this._http.get(this.url+'socios/'+id,options)
 						 .map(res=>res.json());
 	}
 
-	getAlberca(token,id){
+	deleteSocios(token,id,socio){
+		let params = JSON.stringify(socio);
+
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
@@ -45,31 +51,33 @@ export class AlbercaService  {
 
 		let options= new RequestOptions({headers:headers});
 
-		return this._http.get(this.url+'obtener_alberca/'+id,options)
-					.map(res=>res.json());
-	}
-
-	deleteAlberca(token,id){
-		let headers = new Headers({
-			'Content-Type':'application/json',
-			'Authorization':token
-		});
-
-		let options= new RequestOptions({headers:headers});
-
-		return this._http.delete(this.url+'delete_alberca/'+id,options)
+		return this._http.post(this.url+'delete-user/'+id,params,options)
 				   .map(res=>res.json());
 	}
 
-	editAlberca(token,id,alberca){
-		let params = JSON.stringify(alberca);
+	getSocio(token,id){
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
 		});
 
-		return this._http.put(this.url+'update_alberca/'+id,params,{headers:headers})
-					.map(res => res.json());
+		let options= new RequestOptions({headers:headers});
 
+		return this._http.get(this.url+'getsocios/'+id,options)
+					.map(res=>res.json());
 	}
-}	 
+
+	updateSocio(token,user_to_update){
+		let params = JSON.stringify(user_to_update);
+		let headers = new Headers({
+			'Content-Type':'application/json',
+			'Authorization':token
+		});
+
+		let options= new RequestOptions({headers:headers});
+
+		return this._http.put(this.url+'update-socio/'+user_to_update._id,params,options)
+						 .map(res => res.json());
+	}
+
+}

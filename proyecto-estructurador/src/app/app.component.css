@@ -150,24 +150,15 @@
 	align-content: center;
 
 }
- 
-.main article {
-	margin-bottom: 20px;
-	padding-bottom:20px;
-	border-bottom:1px solid #000;
-}
- 
-.main article:nth-last-child(1){
-	margin-bottom: 0;
-	padding-bottom: 0;
-	border-bottom:none;
-}
+
 
 .cimg{
 	width: 380px;
 	height: 300px;
 	background-color: white;
 	margin: 30px;
+	margin-top: 70px;
+	margin-bottom: 50px;
 	border: 2px solid #3db7ef;
 	display: flex;
 	justify-content: center;

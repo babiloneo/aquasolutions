@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, DoCheck{
   }
 
   activeClientes(){
-    this.miTitulo="Usuarios";
+    this.miTitulo="Socios";
     this.cuerpo=false;
   }
 

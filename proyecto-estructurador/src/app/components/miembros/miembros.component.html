@@ -1,106 +1,78 @@
 <div class="contenedor">
   
-  <div class="botones">
+  <div class="botones" *ngIf="">
       <form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
-
           <input type="text" id="usuario" name="usuario" placeholder="ID de Usuario">
-
           <input type="submit" href="inicio.html" value="Buscar usuario"  >
-
       </form>
-    
   </div>
 
 	<div class="datos">
 
-		<table>
+		<table class="table-hover">
 				<tr>
-  				<th>{{opcion}}</th>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Apellido Paterno</th>
           <th>Apellido Materno</th>
           <th>Telefono</th>
           <th>Email</th>
-          <th>Contraseña</th>
-          <th>Estado</th>
-          <th>Rol</th>
+          <th>Acciones</th>
 				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
-				</tr>
-				<tr>
-					<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-  				<td>null</td>
-          <td>null</td>
+
+				<tr *ngFor="let socio of socios">
+          <td>{{socio._id}}</td>
+					<td>{{socio.Usu_Nombre}}</td>
+  				<td>{{socio.Usu_Apellido_P}}</td>
+  				<td>{{socio.Usu_Apellido_M}}</td>
+  				<td>{{socio.Usu_Telefono}}</td>
+  				<td>{{socio.Usu_Email}}</td>
+          <td>
+            <button class="btn btn-lg btn-success" (click)="openModal(templeate2)" style="margin-right:10px;">
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+            </button>
+
+
+            <ng-template #templeate2>
+              <div class="modal-header">
+                <h2 class="modal-title pull-left">{{socio.Usu_Nombre}}  {{socio.Usu_Apellido_P}}  {{socio.Usu_Apellido_M}}</h2>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+              <div class="imagen">
+                  <img src="{{url+'get-image-socio/'+socio.Usu_Image}}">                
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" (click)="modalRef.hide()">Cerrar</button>
+
+            </div>            
+          </ng-template>
+
+
+            <button class="btn btn-lg btn-danger" (click)="openModal(template)" style="margin-right:10px;">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar
+            </button>
+
+            <ng-template #template >
+              <div class="modal-header">
+                <h2 class="modal-title pull-left">¿Estas seguro?</h2>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <p>¿Seguro que desea eliminar este registro:<strong>{{socio.Usu_Nombre}}</strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary" (click)="modalRef.hide()">Cerrar</button>
+                <button type="button" class="btn btn-lg btn-danger" (click)="deleteSocio(socio,socio._id)" (click)="modalRef.hide()">Borrar</button>
+            </div>            
+          </ng-template>
+            
+          </td>
 				</tr>
 		</table>	
 	</div>

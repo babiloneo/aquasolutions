@@ -1,38 +1,87 @@
-<div class="contenedor">
+  <div class="contenedor">
 
-    <div class="busqueda">
-        <form class="fa" action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+    <div class="alertas">
 
-            <input type="text" id="usuario" name="usuario" placeholder="ID de Sensor">
-
-            <input type="submit" href="inicio.html" value="Buscar Sensor"  >
-
-        </form>
-      
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+      <h3>{{message}}</h3>
     </div>
 
-	<div class="datos">
+  </div>
 
-    <form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+  <div class="datos">
+      <form #buscarSensorForm="ngForm" (ngSubmit)="getALberca()" name="buscarSensorForm">
+        
+        <div>
+          <input type="text" placeholder="ID de Alberca" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
+          <span *ngIf="!buscar.valid && buscar.touched" tooltip="Introdusca la id del registro a buscar"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+              ID nesesaria
+          </span>
+        </div>
 
-      <input type="text" id="usuario" name="usuario" placeholder="ID">
-      <input type="text" id="usuario" name="usuario" placeholder="Nombre">
-      <input type="text" id="nom" name="usuario" placeholder="Descripcion">
-      <input type="text" id="usuario" name="usuario" placeholder="imagen">
-      <input type="text" id="usuario" name="usuario" placeholder="Fecha">
-      <input type="text" id="nom" name="usuario" placeholder="IP">
-    </form>
-		</div>
+        <div>
+          <input style="margin: 0px;" type="submit"  value="Buscar Alberca" lass="btn btn-primary" [disabled]="!buscarSensorForm.form.valid">
+        </div>
 
-		<div class="botones">
-    		<form action="script_acceso_usuario.php" method="post" name="frm_ingreso">
+      </form>    
+  </div>
+      
 
-      			<input type="submit" href="inicio.html" value="Guardar Cambios"  >
-      			<input type="submit" href="inicio.html" value="Cancelar"  >
+  <div class="datos">
 
+      <form #editerSensorForm="ngForm" (ngSubmit)="onSubmit(editerSensorForm)" name="editerSensorForm">
 
-    		</form>
-			
-		</div>
+      <div class="padre">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" #name="ngModel" [(ngModel)]="sensor.Sen_Nombre" class="form-control" placeholder="Nombre" minlength="3" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,200}" required>
+        <span *ngIf="!name.valid && name.touched" tooltip="Solo se permiten letras, entre 3-50 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            El nombre es obligatorio
+        </span>
+      </div>
 
-	</div> <!-- fin contenedor-->
+      <div>
+
+        <label for="descripcion">Descripcion</label>
+          <input type="text" name="descripcion" placeholder="Capacidad" #descripcion="ngModel" [(ngModel)]="sensor.Sen_Descripcion" class="form-control" minlength="3" maxlength="200"  required>
+
+            <span *ngIf="!descripcion.valid && descripcion.touched" tooltip="Solo se permiten letras, entre 3-200 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Dato obligatorio 
+        </span>
+
+      </div>
+
+      <div>
+
+        <label for="adress">IP Adrress</label>
+          <input type="text" name="adress" placeholder="Ubicacion" #adress="ngModel" [(ngModel)]="sensor.Sen_ip" class="form-control" minlength="3" maxlength="100" required>
+
+            <span *ngIf="!adress.valid && adress.touched" tooltip="Solo se permiten letras, entre 3-100 caráctere"
+              [tooltipDisabled]="false"
+              [tooltipAnimation]="true"
+              tooltipPlacement="right">
+            Dato obligatorio 
+        </span>
+
+      </div>
+
+      <div>
+        <label for="imagen">Subir foto</label>
+        <input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="sensor.Sen_Image" class="form-control" (change)="fileChangeEvent($event)" >
+
+      </div>
+          <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!editerSensorForm.form.valid">
+
+          <input type="button" value="Cancelar" (click)="limpiarForm(editerSensorForm,buscarAlbercaForm)">
+
+      </form>
+  </div>
+
+</div> 

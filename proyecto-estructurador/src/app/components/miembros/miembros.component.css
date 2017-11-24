@@ -17,6 +17,19 @@
 
 }
  
+.imagen{
+	width: 100%;
+	
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+}
+.imagen img{
+	width: 380px;
+	margin: auto;
+
+}
 
 .datos {
 	width: 100%;
@@ -37,7 +50,6 @@ table {
 }
 
 th, td {
-    text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 4px;

@@ -5,6 +5,7 @@ var path = require('path');
 
 //modelos
 var Alberca =require('../models/alberca');
+var Trigger = require('../models/trigger');
 var Sensor = require('../models/sensor');
 
 //acciones
@@ -13,6 +14,40 @@ function pruebas(req,res){
 		message:'Probando el controlador de albercas',
 		user:req.user
 	});
+}
+
+//1 : insert
+//2: update
+//3 :delete 
+function triggerSensor(num,myuser,id){
+
+	var trigger = new Trigger();
+	trigger.Usuario=myuser;
+	trigger.fecha=new Date();
+	trigger.coleccion="Sensores";
+	trigger.campo=id;
+	switch(num){
+
+		case 1:	trigger.movimiento="INSERT";
+				break;
+		case 2:	trigger.movimiento="UPDATE";
+				break;
+		case 3: trigger.movimiento="DELETE";
+				break;
+	}
+
+	trigger.save((err,tri) =>{
+		if(err){
+
+		}else{
+			if(!tri){
+				console.log("no se pudo");
+			}else{
+				console.log(tri);
+			}
+		}
+	});
+
 }
 
 function saveSensor(req,res){
@@ -36,6 +71,7 @@ function saveSensor(req,res){
 					res.status(500).send({message:'Error en el servidor'});
 				}else{
 					res.status(200).send({sensor:sensorStored});
+					triggerSensor(1,req.user.sub,sensor._id,);
 				}
 			}
 		});
@@ -90,6 +126,8 @@ function updateSensor(req,res){
 				res.status(404).send({message:'No se ha actualizado el sensor'});
 			}else{
 				res.status(200).send({sensor:sensorUpdate});
+				triggerSensor(2,req.user.sub,sensorUpdate._id,);
+
 			}
 		}
 	});
@@ -98,7 +136,6 @@ function updateSensor(req,res){
 function uploadsImage(req,res){
 	var sensorId = req.params.id;
 	var file_name = 'No subido...';
-
 if(req.files){
 		var file_path = req.files.Sen_Image.path;
 		var file_split = file_path.split('\\');
@@ -164,7 +201,10 @@ function deleteSensor(req,res){
 			if(!sensorRemoved){
 				res.status(404).send({message:'No se encontro el sensor'});
 			}else{
-				res.status(200).send({sensor:sensorRemoved})
+				res.status(200).send({sensor:sensorRemoved});
+				triggerSensor(3,req.user.sub,sensorRemoved._id,);
+
+
 			}
 		}
 	});

@@ -78,7 +78,7 @@
  
 </div>
 
-  <div class="secciones" *ngIf="miTitulo=='Usuarios'">
+  <div class="secciones" *ngIf="miTitulo=='Socios'">
     <nav>
       <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
       <a [routerLink]="['/miembros']" [routerLinkActive]="['active']">Buscar usuario</a>
@@ -118,7 +118,7 @@
  
     <div class="main">
       <div class="cimg" id="i1" (click)="activeClientes()" [routerLink]="['/miembros']">
-        <p class="selec"> Clientes</p>
+        <p class="selec"> Socios</p>
         <img src="./assets/images/clientes.png">
     </div>
 
@@ -126,7 +126,7 @@
         <p class="selec"> Albercas</p>
         <img src="./assets/images/alberca2.png">
       </div>
-
+<!--
       <div class="cimg" (click)="activeSensor()" [routerLink]="['/buscar_sensor']">
         <p class="selec"> Sensores</p>
         <img src="./assets/images/sensor.png">
@@ -136,7 +136,7 @@
         <p class="selec"> Mantenimientos</p>
         <img src="./assets/images/manteni.png">
       </div>
-
+-->
     </div>
 
   </div>

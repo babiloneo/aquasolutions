@@ -85,7 +85,7 @@
 
 			<div>
 				<label for="empresa">Empresa</label>
-				<input type="text" name="empresa" #empresa="ngModel" [(ngModel)]="user.empresa" class="form-control" placeholder="E-Mail" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
+				<input type="text" name="empresa" #empresa="ngModel" [(ngModel)]="user.empresa" class="form-control" placeholder="Empresa" minlength="3" maxlength="48" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required>
 				<span *ngIf="!empresa.valid && empresa.touched" tooltip="Solo se permiten letras, entre 3-48 caráctere"
 				      [tooltipDisabled]="false"
 				      [tooltipAnimation]="true"

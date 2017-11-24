@@ -29,6 +29,7 @@ export class BucarAlbercaComponent implements OnInit {
 	public status;
 	public message;
 	public token;
+	public identity;
 	public albercas: Alberca[];
 	public busqueda;
 	modalRef: BsModalRef;
@@ -46,19 +47,19 @@ export class BucarAlbercaComponent implements OnInit {
 		this.title="ALBERCAS";
 		this.token=this._userService.getToken();
 		this.url = GLOBAL.url;
-
+		this.identity=this._userService.getIdentity();
 	}
 
 	ngOnInit(){
 		this.getalbercas();
-		$('#descripcion').dotdotdot({});
 	}
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
   getalbercas(){
-	this._albercaService.getAlbercas(this.token).subscribe(
+  	var id = this.identity._id;
+	this._albercaService.getAlbercas(this.token,id).subscribe(
 		response =>{
 			if(!response.albercas){
 				//this._router.navigate(['/']);
