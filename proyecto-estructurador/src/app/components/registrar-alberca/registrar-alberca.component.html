@@ -27,7 +27,7 @@
 			<div>
 
 				<label for="capacidad">Descripcion</label>
-		    	<input type="text" name="capacidad" placeholder="Capacidad" #capacidad="ngModel" [(ngModel)]="alberca.Alb_Capacidad" class="form-control" minlength="3" maxlength="200"  required>
+		    	<input type="text" name="capacidad" placeholder="Descripcion" #capacidad="ngModel" [(ngModel)]="alberca.Alb_Capacidad" class="form-control" minlength="3" maxlength="200"  required>
 
 		      	<span *ngIf="!capacidad.valid && capacidad.touched" tooltip="Solo se permiten letras, entre 3-200 caráctere"
 				      [tooltipDisabled]="false"

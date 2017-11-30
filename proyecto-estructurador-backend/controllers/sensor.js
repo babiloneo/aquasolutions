@@ -82,9 +82,9 @@ function saveSensor(req,res){
 
 
 function getSensores(req,res){
+	var albercaId = req.params.id;
 
-
-	Sensor.find({}).populate({path:'user'}).exec((err,sensores) =>{
+	Sensor.find({Id_Alberca:albercaId,Sen_Estado:true}).exec((err,sensores) =>{
 		if(err){
 			res.status(500).send({message:'Eror en la peticion'});
 		}else{
@@ -193,8 +193,9 @@ function deleteSensor(req,res){
 
 	var sensorId=req.params.id;
 
-	Sensor.findByIdAndRemove(sensorId,(err,sensorRemoved) =>{
 
+
+	Sensor.update({_id:sensorId},{Sen_Estado:false},{new:true},(err,sensorRemoved) =>{
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
 		}else{
@@ -203,11 +204,10 @@ function deleteSensor(req,res){
 			}else{
 				res.status(200).send({sensor:sensorRemoved});
 				triggerSensor(3,req.user.sub,sensorRemoved._id,);
-
-
 			}
 		}
 	});
+
 }
 module.exports={
 	pruebas,

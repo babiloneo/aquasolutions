@@ -84,4 +84,10 @@ export class RegistrarSensorComponent implements OnInit{
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 	}
 
+	public limpiarForm(formulario){
+		formulario.reset();
+		this._router.navigate(['/buscar_alberca']);
+
+	}
+
 }

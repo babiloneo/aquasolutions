@@ -33,7 +33,6 @@ export class EditarAlbercaComponent implements OnInit{
 		private _uploadService:UploadService,
 		){
 		this.title="ALBERCAS";
-		this.alberca=new Alberca('','','','','','');
 		this.identity=this._userService.getIdentity();
 		this.token=this._userService.getToken();
 		this.url=GLOBAL.url;
@@ -100,7 +99,6 @@ export class EditarAlbercaComponent implements OnInit{
 	}
 
 	limpiarForm(registerAlbercaForm,buscarAlbercaForm){
-		this.alberca = new Alberca('','','','','','');
 		registerAlbercaForm.reset();
 		this.status='success';
 		this.buscarId="";		

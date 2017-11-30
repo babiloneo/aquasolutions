@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router,ActivatedRoute,Params} from '@angular/router';
 import { GLOBAL } from '../../services/global';
 import { Sensor } from '../../models/sensor'; 
@@ -62,20 +61,23 @@ export class BuscarSensorComponent  implements OnInit{
   }
 
   getSensores(){
-	this._sensorService.getSensores(this.token).subscribe(
-		response =>{
-			if(!response.sensores){
+  	this._route.params.forEach((params:Params) =>{
+	  	let id =params['id'];
+		this._sensorService.getSensores(this.token,id).subscribe(
+			response =>{
+				if(!response.sensores){
 
-			}else{
-				this.sensores=response.sensores;
+				}else{
+					this.sensores=response.sensores;
+				}
+			},
+			error=>{
+				console.log(<any>error);
 			}
-		},
-		error=>{
-			console.log(<any>error);
-		}
-	);  	
-  }
+		);  	
   
+	});
+  }
   deleteSensor(id){
   	this._sensorService.deleteSensor(this.token,id).subscribe(
   		response =>{

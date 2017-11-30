@@ -8,6 +8,8 @@ var AlbercaSchema = Schema({
 	Alb_Capacidad: String,
 	Alb_Ubicacion: String,
 	Alb_Image:String,
+	Alb_Empresa:String,
+	Alb_Estado:String,
 	user:{type: Schema.ObjectId, ref: 'User'}
 });
 

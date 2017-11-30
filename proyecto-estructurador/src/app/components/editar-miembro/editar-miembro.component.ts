@@ -1,6 +1,8 @@
 import { Component,OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { Socio }  from '../../models/socio';
+import { User }  from '../../models/user';
+
 import { GLOBAL } from '../../services/global';
 import { SocioService } from '../../services/socio.service';
 import { UserService } from '../../services/user.services';
@@ -17,7 +19,7 @@ import { UploadService } from '../../services/upload.services';
 export class EditarMiembroComponent implements OnInit {
 	
 	public title: string;
-	public socio: Socio;
+	public socio: User;
 	public identity;
 	public token;
 	public status;
@@ -42,11 +44,12 @@ export class EditarMiembroComponent implements OnInit {
 	}
 
 	getSocio(){
-		this._socioService.getSocio(this.token,this.buscarId).subscribe(
+		this._userService.getSocio(this.token,this.buscarId).subscribe(
 			response =>{
-				if(!response){
-					this.status="error";
+				if(!response.socio){
 					this.message="ID de registro no encontrada";
+					this.status="error";
+					alert('if response');
 
 				}else{
 					this.status="success";
@@ -54,16 +57,17 @@ export class EditarMiembroComponent implements OnInit {
 				}
 			},
 			error =>{
-				console.log(<any>error);
+				this.message="ID de registro no encontrada";				
 				this.status="error";
-				this.message="ID de registro no encontrada";
+				console.log(<any>error);
+
 			}
 		);
 	}
 
 	updateSocio(){
 		//realizo la peticion a actualiza mi usuario
-		this._socioService.updateSocio(this.token,this.socio).subscribe(
+		this._userService.updateUser(this.socio).subscribe(
 			response =>{
 				//si no me devuelve un usuario mando error
 				if(!response.user){
@@ -72,7 +76,7 @@ export class EditarMiembroComponent implements OnInit {
 					//si me devuelve el usuario actualizado actualizo el identity local
 					this.status= 'success';
 					
-					this._uploadService.makeFileRequest(this.url+'upload-image-socio/'+this.buscarId,[],this.filesToUpload,this.token,'Usu_Image')
+					this._uploadService.makeFileRequest(this.url+'upload-image-user/'+this.buscarId,[],this.filesToUpload,this.token,'image')
 									   .then((result: any) =>{
 									   	//this.socio = result.user;
 									   	this._router.navigate(['/miembros']);
@@ -95,5 +99,11 @@ export class EditarMiembroComponent implements OnInit {
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 	}
+
+	limpiarForm(registerUserForm){
+		registerUserForm.reset();
+		this.status='success';			 			
+	}
+
 
 }

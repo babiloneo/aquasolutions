@@ -100,7 +100,7 @@
 	font-family: gadugi;
 	font-size: 1.2em;
 	color: #4d4f54;
-
+	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-content: center;

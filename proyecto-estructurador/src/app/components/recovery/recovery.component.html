@@ -1,0 +1,42 @@
+
+<div class="cuerpo">
+
+	<div class="alertas">
+
+		<div class="alert alert-danger" *ngIf="status == 'error'">
+			{{message}}
+		</div>
+	</div>
+
+	<section id="formulario">
+	<div class="salt">
+	</div>
+	<br>
+	<img class="img-usuario" src="./assets/images/img-user.png">
+
+		<form #loginForm="ngForm" (ngSubmit)="obtenermicontra(loginForm)">
+
+			<div class="inp">
+				<input type="text"  name="email" placeholder="Correo Electronico" #email="ngModel" [(ngModel)]="user.email" minlength="5" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+			
+				<span *ngIf="!email.valid && email.touched" tooltip="Utilize el siguiente  formato: alguien@example.com"
+				      [tooltipDisabled]="false"
+				      [tooltipAnimation]="true"
+				      tooltipPlacement="right">
+					  Complete este campo Corectamente
+				</span>
+			</div>
+
+			<div class="inp" *ngIf="!cajita">
+				<input type="text" name="password" placeholder="Codigo de Usuario" #conf="ngModel" [(ngModel)]="user.telefono" minlength="0" maxlength="30" pattern="[A-Za-z0-9!?-]{0,30}" required>
+			</div>
+
+			<div class="inp" *ngIf="cajita">
+				<input type="text" name="password" placeholder="Cotraseña nueva" #password="ngModel" [(ngModel)]="user.password" minlength="0" maxlength="30" pattern="[A-Za-z0-9!?-]{0,30}" required>
+			</div>
+			
+			<input type="submit" value="Enviar">
+
+		</form>
+	</section>
+</div>

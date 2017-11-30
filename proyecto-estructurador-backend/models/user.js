@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 //definir schema
 var UserSchema = Schema({
+    _id:String,
     Usu_Nombre : String,
     Usu_Apellido_M : String,
     Usu_Apellido_P : String,

@@ -4,7 +4,7 @@
     <div class="alertas">
 
     <div class="alert alert-danger" *ngIf="status == 'error'">
-      <h3>{{message}}</h3>
+      <h3 style="color: green">{{message}}</h3>
     </div>
 
   </div>
@@ -13,7 +13,7 @@
       <form #buscarSocioForm="ngForm" (ngSubmit)="getSocio()" name="buscarSocioForm">
         
         <div>
-          <input type="text" placeholder="Nombre del socio" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
+          <input type="text" placeholder="ID del socio" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
           <span *ngIf="!buscar.valid && buscar.touched" tooltip="Introdusca la id del registro a buscar"
               [tooltipDisabled]="false"
               [tooltipAnimation]="true"
@@ -86,7 +86,7 @@
 
       <div>
         <label for="imagen">Subir foto</label>
-        <input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="socio.Alb_Image" class="form-control" (change)="fileChangeEvent($event)" >
+        <input type="file" name="imagen" #imagen="ngModel" [(ngModel)]="socio.Usu_Image" class="form-control" (change)="fileChangeEvent($event)">
 
       </div>
           <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!editarSocioForm.form.valid">

@@ -14,7 +14,6 @@
           <a [routerLink]="['/productos']" [routerLinkActive]="['active']">SERVICIOS</a>
           <a [routerLink]="['/acercade']" [routerLinkActive]="['active']">ACERCA DE</a>
           <a [routerLink]="['/contactos']" [routerLinkActive]="['active']">CONTACTO</a>
-          <a [routerLink]="['/graf-lineal']" [routerLinkActive]="['active']">GRAFICA</a>
           <a style="width: 15%;" *ngIf="identity" [routerLink]="['/admin']" [routerLinkActive]="['active']" (click)="onMenu2()">MI ALBERCA</a>   
       </nav>
 
@@ -27,7 +26,6 @@
           <a [routerLinkActive]="['active']" [routerLink]="['/mis-datos']">{{identity.Usu_Nombre+" "+identity.Usu_Apellido_P}}</a>
 
           <a [routerLinkActive]="['active']" (click)="logout()">SALIR</a>
-
       </div>
 
       <div class="usuario" *ngIf="!identity">
@@ -75,7 +73,6 @@
     <div class="btn-salir">
       <a [routerLink]="['/home']" (click)="onMenu1()" [routerLinkActive]="['active']">Salir</a> 
     </div>
- 
 </div>
 
   <div class="secciones" *ngIf="miTitulo=='Socios'">
@@ -91,15 +88,14 @@
     <nav>
       <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
       <a [routerLink]="['/buscar_alberca']" [routerLinkActive]="['active']">Buscar alberca</a>
-      <a [routerLink]="['/registrar_alberca']" [routerLinkActive]="['active']">Registrar alberca</a>
-      <a [routerLink]="['/editar_alberca']" [routerLinkActive]="['active']">Editar albercas</a>
+      <a (click)="comprobarUser('regAlberca')" [routerLinkActive]="['active']">Registrar alberca</a>
+      <a (click)="comprobarUser('editAlberca')" [routerLinkActive]="['active']">Editar albercas</a>
     </nav>
   </div>
 
   <div class="secciones" *ngIf="miTitulo=='Sensores'">
     <nav>
-      <a (click)="volveMenu2()" [routerLink]="['/admin']">Volver al menu</a>
-      <a [routerLink]="['/buscar_sensor']" [routerLinkActive]="['active']">Buscar sensor</a>
+      <a (click)="activeAlberca()" [routerLink]="['/buscar_alberca']">Volver al menu</a>
       <a [routerLink]="['/editar_sensor']" [routerLinkActive]="['active']">Editar sensor</a>
     </nav>
   </div>
@@ -116,11 +112,11 @@
 
   <div class="contenedor" *ngIf="!menu && cuerpo">    
  
-    <div class="main">
-      <div class="cimg" id="i1" (click)="activeClientes()" [routerLink]="['/miembros']">
+    <div class="main" >
+      <button  class="cimg" id="i1" (click)="comprobarUser('miembros')">
         <p class="selec"> Socios</p>
         <img src="./assets/images/clientes.png">
-    </div>
+      </button>
 
       <div class="cimg" (click)="activeAlberca()" [routerLink]="['/buscar_alberca']" [routerLinkActive]="['active']">
         <p class="selec"> Albercas</p>

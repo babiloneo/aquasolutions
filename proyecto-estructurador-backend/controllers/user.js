@@ -77,6 +77,57 @@ function saveUser(req,res){
 
 }
 
+function getpassword(req,res){
+	var params = req.body;
+
+	var email = params.email;
+	var confi = params.telefono;
+	
+	User.findOne({Usu_Email:email.toLowerCase()},(err,user)=>{
+		if(err){
+			res.status(500).send({message:"Error en el servidor"});
+		}else{
+			if(!user){
+				res.status(404).send({message:"No se encontro el usuario"})
+			}else{
+				var str = user._id;
+				var count = str.length;
+				var cmp = str.substring((count-4),count);
+				console.log("1: "+confi+" "+cmp);
+				if(confi==cmp){
+					res.status(200).send({estado:1});
+				}else{
+					res.status(200).send({estado:0});
+				}
+			}
+		}
+	});
+}
+
+
+function updatePassword(req,res){
+	var params = req.body;
+
+	var email = params.email;
+	var password = params.password;
+	bcrypt.hash(password, null , null , function(err,hash){
+		//user.Usu_Password = hash;
+
+		User.update({Usu_Email:email},{Usu_Password:hash},{new:true},(err,updatepassword) =>{
+			if(err){
+				res.status(500).send({message:'Error en la peticion'});
+			}else{
+				if(!updatepassword){
+					res.status(404).send({message:'No se encontro el sensor'});
+				}else{
+					res.status(200).send({password:updatepassword});
+					//triggerSensor(3,req.user.sub,sensorRemoved._id,);
+				}
+			}
+		});
+	});
+}
+
 function login(req,res){
 
 	var params = req.body;
@@ -124,9 +175,7 @@ function UpdateUser(req,res){
 	var userId = req.params.id;
 	var update = req.body;
 
-	if(userId != req.user.sub){
-		return res.status(500).send({message:'No tienes permiso para modificar este usuario'});
-	}else{
+
 		User.findByIdAndUpdate(userId,update,{new:true},(err,userUpdate) =>{
 			if(err){
 				res.status(500).send({
@@ -140,8 +189,25 @@ function UpdateUser(req,res){
 				}
 			}
 		});
-	}
+	
 }
+
+function getsocio(req,res){
+	var socioId = req.params.id;
+
+	User.findById(socioId).populate({path:'user'}).exec((err,getSocio) =>{
+		if(err){
+			res.status(500).send({message:'Eror en la peticion'});
+		}else{
+			if(!getSocio){
+				res.status(404).send({message:'ID de registro no encontrada'})
+			}else{
+				res.status(200).send({socio:getSocio});
+			}
+		}
+	});
+}
+
 
 function uploadsImage(req,res){
 	var userId = req.params.id;
@@ -157,9 +223,6 @@ function uploadsImage(req,res){
 
 	if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg'){
 		
-		if(userId != req.user.sub){
-			return res.status(500).send({message:'No tienes permiso para modificar este usuario'});
-		}else{
 			User.findByIdAndUpdate(userId,{Usu_Image:file_name},{new:true},(err,userUpdate) =>{
 				if(err){
 					res.status(500).send({
@@ -173,7 +236,7 @@ function uploadsImage(req,res){
 					}
 				}
 			});
-		}
+		
 
 		}else{
 			fs.unlink(file_path, (err)=>{
@@ -204,7 +267,9 @@ function getImageFile(req,res){
 }
 
 function getAdmin(req,res){
-	User.find({Usu_Role:'admin'}).exec((err,users) =>{
+		var empresa = req.params.empresa;
+
+	User.find({Usu_Estado:'true',Usu_Role:'socio',Usu_Empresa:empresa}).exec((err,users) =>{
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
 		}else{
@@ -217,6 +282,27 @@ function getAdmin(req,res){
 	});
 }
 
+function DeleteUser(req,res){
+	var userId = req.params.id;
+	var update = req.body;
+
+	User.findByIdAndUpdate(userId,update,{new:true},(err,userUpdate) =>{
+		if(err){
+			res.status(500).send({
+				message:'Error al actualizar el usuario'
+			});
+		}else{
+			if(!userUpdate){
+				res.status(404).send({message:'No se ha podido hactualizar el usuario'})
+			}else{
+				res.status(200).send({user:userUpdate});
+			    //triggerSocio(3,userUpdate.user,userUpdate._id,);
+
+			}
+		}
+	});
+}
+
 module.exports = {
 	pruebas,
 	saveUser,
@@ -224,5 +310,9 @@ module.exports = {
 	UpdateUser,
 	uploadsImage,
 	getImageFile,
-	getAdmin
+	getAdmin,
+	DeleteUser,
+	getsocio,
+	getpassword,
+	updatePassword
 };

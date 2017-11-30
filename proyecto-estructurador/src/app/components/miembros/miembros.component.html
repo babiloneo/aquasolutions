@@ -11,6 +11,7 @@
 
 		<table class="table-hover">
 				<tr>
+          <th>FOTO</th>
           <th>ID</th>
           <th>Nombre</th>
           <th>Apellido Paterno</th>
@@ -21,6 +22,7 @@
 				</tr>
 
 				<tr *ngFor="let socio of socios">
+          <td><img style="width: 50px; height: 50px;" src="{{url+'get-image-file/'+socio.Usu_Image}}"></td>
           <td>{{socio._id}}</td>
 					<td>{{socio.Usu_Nombre}}</td>
   				<td>{{socio.Usu_Apellido_P}}</td>
@@ -28,10 +30,10 @@
   				<td>{{socio.Usu_Telefono}}</td>
   				<td>{{socio.Usu_Email}}</td>
           <td>
-            <button class="btn btn-lg btn-success" (click)="openModal(templeate2)" style="margin-right:10px;">
+          <!--  <button class="btn btn-lg btn-success" (click)="openModal(templeate2)" style="margin-right:10px;">
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
             </button>
-
+          -->
 
             <ng-template #templeate2>
               <div class="modal-header">
@@ -42,7 +44,7 @@
               </div>
             <div class="modal-body">
               <div class="imagen">
-                  <img src="{{url+'get-image-socio/'+socio.Usu_Image}}">                
+                  <img src="{{url+'get-image-file/'+socio.Usu_Image}}">                
               </div>
             </div>
             <div class="modal-footer">

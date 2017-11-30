@@ -20,6 +20,8 @@ export class AppComponent implements OnInit, DoCheck{
   public cuerpo: boolean;
   public miTitulo: string;
   public opc: string;
+  public role: boolean;
+  public rol:string;
   /*@Input('titulo') miTitulo: string;*/
 
   constructor(
@@ -46,7 +48,26 @@ export class AppComponent implements OnInit, DoCheck{
   }
 
   ngDoCheck(){
-    this.identity=this._userService.getIdentity();    
+    this.identity=this._userService.getIdentity();
+  }
+
+  comprobarUser(ir){
+   if(this.identity['Usu_Role']=="admin"){
+
+     switch(ir){
+       case "miembros":
+            this.miTitulo="Socios";
+            this.cuerpo=false;
+            this._router.navigate(['/miembros']);
+            break;
+
+       case "regAlberca":
+            this._router.navigate(['/registrar_alberca']);
+            break;
+       case "editAlberca":
+            this._router.navigate(['/editar_alberca'])
+      }
+    }
   }
 
   logout(){
@@ -55,6 +76,10 @@ export class AppComponent implements OnInit, DoCheck{
     this._router.navigate(['/']);
   }
 
+  sayHello() {
+    alert('hello from parent component!');
+  }
+  
   onMenu2(){
     this.menu=false;
     this.cuerpo=true;
@@ -93,4 +118,6 @@ export class AppComponent implements OnInit, DoCheck{
     this.cuerpo=true;
     this.miTitulo="Panel Administrarivo";
   }
+
+
 }

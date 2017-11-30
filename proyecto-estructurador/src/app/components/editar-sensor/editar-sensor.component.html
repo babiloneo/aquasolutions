@@ -9,7 +9,7 @@
   </div>
 
   <div class="datos">
-      <form #buscarSensorForm="ngForm" (ngSubmit)="getALberca()" name="buscarSensorForm">
+      <form #buscarSensorForm="ngForm" (ngSubmit)="getSensor()" name="buscarSensorForm">
         
         <div>
           <input type="text" placeholder="ID de Alberca" name="buscar" #buscar="ngModel" [(ngModel)]="buscarId" class="form-control" placeholder="Nombre" minlength="3" maxlength="30"  required>
@@ -79,7 +79,7 @@
       </div>
           <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="!editerSensorForm.form.valid">
 
-          <input type="button" value="Cancelar" (click)="limpiarForm(editerSensorForm,buscarAlbercaForm)">
+          <input type="button" value="Cancelar" (click)="limpiarForm(editerSensorForm,buscarSensorForm)">
 
       </form>
   </div>

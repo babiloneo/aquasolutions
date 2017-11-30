@@ -24,11 +24,12 @@ export class MiembrosComponent implements OnInit{
 	
 	public title: string;
 	public token: string;
+	public identity;
 	public url;
 	public user:User;
-	public socio:Socio;
-	public socioDelete:Socio;
-	public socios:Socio[];
+	public socio:User;
+	public socioDelete:User;
+	public socios:User[];
 	modalRef: BsModalRef;
   	subscriptions: Subscription[] = [];
   	messages: string[] = [];
@@ -43,7 +44,7 @@ export class MiembrosComponent implements OnInit{
 		this.title="ALBERCAS";
 		this.token=this._userService.getToken();
 		this.url = GLOBAL.url;
-		this.user=this._userService.getIdentity();
+		this.identity=this._userService.getIdentity();
 
 	}
 
@@ -55,11 +56,11 @@ export class MiembrosComponent implements OnInit{
   	}
 
   	getaSocios(){
-  		var id = this.user['_id'];
-		this._socioService.getSocios(this.token,id).subscribe(
+  		var empresa = this.identity['Usu_Empresa'];
+		this._userService.getSocios(this.token,empresa).subscribe(
 			response =>{
 				if(!response.users){
-				//this._router.navigate(['/']);
+					alert('Eror');
 				}else{
 					this.socios=response.users;
 				}
@@ -73,9 +74,9 @@ export class MiembrosComponent implements OnInit{
 
   deleteSocio(socio,id){
   	this.socioDelete=socio;
-  	this.socioDelete.Usu_Estado=false;
+  	this.socioDelete['Usu_Estado']=false;
 
-  	this._socioService.deleteSocios(this.token,id,this.socioDelete).subscribe(
+  	this._userService.deleteSocios(this.token,id,this.socioDelete).subscribe(
   		response =>{
   			if(!response.user){
   				alert('Error en el servidor');
@@ -88,14 +89,6 @@ export class MiembrosComponent implements OnInit{
   	);
   }	
 
-/*
-  getAlbercaImg(){
-  	this._route.params.forEach((params:Params) =>{
 
-  		let id =params['id'];
-
-  		//this._albercaService.getAlbercas(id).se
-  	});
-  }*/
 
 }

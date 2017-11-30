@@ -2,28 +2,22 @@
 <div class="contenedor">
 
 
-  <div class="botones">
-      <form >
-          <input type="text" placeholder="ID de Alberca">
-          <input type="submit"  value="Buscar Alberca"  >
-      </form>
-    
-  </div>
-
 	<div class="datos">
 
 		<table class="table-hover">
 				<tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Ubicacion</th>
           <th>Acciones</th>
         </tr>
 
         <tr *ngFor="let alberca of albercas | search: busqueda">
+          <td>{{alberca._id}}</td>
           <td>{{alberca.Alb_Nombre}}</td>
           <td>{{alberca.Alb_Ubicacion}}</td>
           <td class="acciones">
-            <a [routerLink]="['/buscar_sensor',alberca._id]" class="btn btn-lg btn-success" style="margin-right:10px;">
+            <a [routerLink]="['/buscar_sensor',alberca._id]" (click)="gohead()" class="btn btn-lg btn-success" style="margin-right:10px;">
 
               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
             </a>
@@ -49,8 +43,8 @@
             </div>            
           </ng-template>
 
-            <a class="btn btn-lg btn-primary">
-              <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sensor
+            <a [routerLink]="['/registrar_sensor',alberca._id]" class="btn btn-lg btn-primary" style="margin-right:10px;">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Sensor
             </a>
 
           </td>

@@ -26,6 +26,7 @@ import { EditarSensorComponent } from './components/editar-sensor/editar-sensor.
 import { BuscarMantComponent } from './components/buscar-mant/buscar-mant.component';
 import { RegistrarMantComponent } from './components/registrar-mant/registrar-mant.component';
 import { EditarMantComponent } from './components/editar-mant/editar-mant.component';
+import { RecoberyComponent } from './components/recovery/recovery.component';
 
 const appRoutes: Routes =[
 	//{path: '', component: HomeComponent}, //ruta por defecto
@@ -38,7 +39,7 @@ const appRoutes: Routes =[
 	{path: 'login', component: LoginComponent},
 	{path: 'ventas', component: VentasComponent},
 	{path: 'mantenimiento', component: MantenimientoComponent},
-	{path: 'graf-lineal', component: LinealComponent},
+	{path: 'graf-lineal/:id', component: LinealComponent},
 	{path: 'mis-datos', component: UserEditComponent},
 	{path: 'admin', component: AdminComponent},
 	{path: 'miembros', component: MiembrosComponent},
@@ -53,6 +54,7 @@ const appRoutes: Routes =[
 	{path: 'buscar_mante', component: BuscarMantComponent},
 	{path: 'registrar_mante', component: RegistrarMantComponent},
 	{path: 'editar_mante', component: EditarMantComponent},
+	{path: 'recuperar', component: RecoberyComponent},
 
 	{path: '**', component: HomeComponent}//cuando la ruta falle o intentemos cargar una pagina que no existe
 

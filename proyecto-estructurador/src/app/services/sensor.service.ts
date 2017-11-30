@@ -25,7 +25,7 @@ export class SensorService  {
 
 	}
 
-	getSensores(token){
+	getSensores(token,id){
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
@@ -33,11 +33,11 @@ export class SensorService  {
 
 		let options= new RequestOptions({headers:headers});
 
-		return this._http.get(this.url+'listar_sensores',options)
+		return this._http.get(this.url+'listar_sensores/'+id,options)
 						 .map(res=>res.json());
 	}
 
-	getAlberca(token,id){
+	getSensor(token,id){
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
@@ -45,7 +45,7 @@ export class SensorService  {
 
 		let options= new RequestOptions({headers:headers});
 
-		return this._http.get(this.url+'obtener_alberca/'+id,options)
+		return this._http.get(this.url+'obtener_sensor/'+id,options)
 					.map(res=>res.json());
 	}
 
@@ -61,14 +61,14 @@ export class SensorService  {
 				   .map(res=>res.json());
 	}
 
-	editAlberca(token,id,alberca){
-		let params = JSON.stringify(alberca);
+	editSensor(token,id,sensor){
+		let params = JSON.stringify(sensor);
 		let headers = new Headers({
 			'Content-Type':'application/json',
 			'Authorization':token
 		});
 
-		return this._http.put(this.url+'update_alberca/'+id,params,{headers:headers})
+		return this._http.put(this.url+'update_sensor/'+id,params,{headers:headers})
 					.map(res => res.json());
 
 	}

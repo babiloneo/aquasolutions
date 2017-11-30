@@ -10,6 +10,8 @@ var user_routes=require('./routes/user');
 var alberca_routes= require('./routes/albercas');
 var sensor_routes=require('./routes/sensor');
 var socio_routes=require('./routes/socio');
+var datos_routes=require('./routes/datos');
+
 //middlewares de body-parser,se ejecuta antes que todo
 app.use(bodyParser.urlencoded({extended:false}));
 // lo que me lleque en una peticion lo convierte a Json
@@ -29,4 +31,5 @@ app.use('/api',user_routes);
 app.use('/api',alberca_routes);
 app.use('/api',sensor_routes);
 app.use('/api',socio_routes);
+app.use('/api',datos_routes);
 module.exports = app;

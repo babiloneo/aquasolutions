@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
-import { Socio } from '../../models/socio';
+import { User } from '../../models/user';
+import { User2 } from '../../models/user2';
 import { GLOBAL } from '../../services/global';
-import { SocioService } from '../../services/socio.service';
 import { UserService } from '../../services/user.services';
 import {TooltipModule} from "ng2-tooltip";
 
@@ -10,43 +10,44 @@ import {TooltipModule} from "ng2-tooltip";
 	selector:'reg-miebro',
 	templateUrl:'./registro-miembro.component.html',
 	styleUrls:['./registro-miembro.component.css'],
-	providers:[SocioService,UserService]
+	providers:[UserService]
 
 })
 
 export class RegistroMiembroComponent implements OnInit{
 	
 	public title: string;
-	public socio: Socio;
+	public user: User;
+	public userResgistrar:User2;
  	public status: string;
  	public message: string;
     public identity;
-    public token;
     public empresa: string;
 	constructor(
 		private _route: ActivatedRoute,
  		private _router:Router,
- 		private _socioService:SocioService,
  		private _userService:UserService
  	){
 		this.title="hola";
-        this.socio = new Socio('','','','','','socio',true,'','','');
+		this.identity = this._userService.getIdentity();
+        this.empresa = this.identity['Usu_Empresa'];
+        this.user = new User('','','','','','',this.empresa,'socio',true,'','');
 
 	}
 	ngOnInit(){
 		
 		console.log('registrar miembro cargado');
-		this.token=this._userService.getToken();
-
 	}
 
-	onSubmit(registerSocioForm){
-		this._socioService.register_socio(this.token,this.socio).subscribe(
+
+
+	onSubmit(registerUserForm){
+		this._userService.register(this.user).subscribe(
 			response =>{
-				if(response.socio && response.socio._id){
+				if(response.user && response.user._id){
 					this.status='success';			 			
-	 				this.socio = new Socio('','','','','','socio',true,'','','');
-	 				registerSocioForm.reset();
+	 				this.user = new User('','','','','','',this.empresa,'socio',true,'','');
+	 				registerUserForm.reset();
 	 				this._router.navigate(['/miembros']);
 
 				}else{
@@ -60,9 +61,9 @@ export class RegistroMiembroComponent implements OnInit{
 			);
 	}
 
-	limpiarForm(registerSocioForm){
-	 	this.socio = new Socio('','','','','','socio',true,'','','');
-		registerSocioForm.reset();
+	limpiarForm(registerUserForm){
+		this.user = new User('','','','','','',this.empresa,'socio',true,'','');
+		registerUserForm.reset();
 		this.status='success';			 			
 
 	}

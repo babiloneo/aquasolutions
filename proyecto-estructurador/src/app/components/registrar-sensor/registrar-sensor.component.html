@@ -29,7 +29,7 @@
 			<div>
 
 				<label for="dscripcion">Descripcion</label>
-		    	<input type="text" name="dscripcion" placeholder="Capacidad" #dscripcion="ngModel" [(ngModel)]="sensor.Sen_Descripcion" class="form-control" minlength="3" maxlength="200"  required>
+		    	<input type="text" name="dscripcion" placeholder="Descripcion" #dscripcion="ngModel" [(ngModel)]="sensor.Sen_Descripcion" class="form-control" minlength="3" maxlength="200"  required>
 
 		      	<span *ngIf="!dscripcion.valid && dscripcion.touched" tooltip="Solo se permiten letras, entre 3-200 caráctere"
 				      [tooltipDisabled]="false"

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 import { Router,ActivatedRoute,Params} from '@angular/router';
 import { GLOBAL } from '../../services/global';
@@ -42,12 +43,17 @@ export class BucarAlbercaComponent implements OnInit {
 		private _albercaService:AlbercaService,
 		private _userService:UserService,
 		private modalService: BsModalService,
-		private changeDetection: ChangeDetectorRef
+		private changeDetection: ChangeDetectorRef,
+		private parent: AppComponent
 		){
 		this.title="ALBERCAS";
 		this.token=this._userService.getToken();
 		this.url = GLOBAL.url;
 		this.identity=this._userService.getIdentity();
+	}
+
+	gohead(){
+		this.parent.activeSensor();
 	}
 
 	ngOnInit(){
@@ -58,8 +64,8 @@ export class BucarAlbercaComponent implements OnInit {
   }
 
   getalbercas(){
-  	var id = this.identity._id;
-	this._albercaService.getAlbercas(this.token,id).subscribe(
+  	var empresa = this.identity['Usu_Empresa'];
+	this._albercaService.getAlbercas(this.token,empresa).subscribe(
 		response =>{
 			if(!response.albercas){
 				//this._router.navigate(['/']);
@@ -92,7 +98,6 @@ export class BucarAlbercaComponent implements OnInit {
 
   		let id =params['id'];
 
-  		//this._albercaService.getAlbercas(id).se
   	});
   }
 }

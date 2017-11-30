@@ -37,7 +37,7 @@ import { EditarSensorComponent } from './components/editar-sensor/editar-sensor.
 import { BuscarMantComponent } from './components/buscar-mant/buscar-mant.component';
 import { RegistrarMantComponent } from './components/registrar-mant/registrar-mant.component';
 import { EditarMantComponent } from './components/editar-mant/editar-mant.component';
-
+import { RecoberyComponent } from './components/recovery/recovery.component';
 /*export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [ exporting ];
@@ -70,7 +70,8 @@ import { EditarMantComponent } from './components/editar-mant/editar-mant.compon
     BuscarMantComponent,
     RegistrarMantComponent,
     EditarMantComponent,
-    SearchPipe
+    SearchPipe,
+    RecoberyComponent
   ],
   imports: [
     BrowserModule,

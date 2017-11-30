@@ -2,23 +2,12 @@
     
     <div class="tit"><h1 class="al_tit">{{alberca.Alb_Nombre}}</h1></div>
     <div class="alberca">
-  
 
-      <!--<div class="image_for_edit" *ngIf="alberca.Alb_Image && alberca.Alb_Image != 'null'">
-      </div>-->
    <img src="{{url + 'get-image-alberca/'+alberca.Alb_Image}}">
 
     <p class="al_tex"> {{alberca.Alb_Capacidad}} </p>
   <p class="al_tex"> {{alberca.Alb_Ubicacion}} </p>
 
-  </div>
-
-  <div class="botones">
-      <form >
-          <input type="text" [(ngModel)]="busqueda" placeholder="ID de Alberca">
-          <input type="submit" href="inicio.html" value="Buscar Alberca"  >
-      </form>
-    
   </div>
 
   <div class="datos">
@@ -39,7 +28,8 @@
           <td>{{sensor.Sen_ip}}</td>
 
           <td class="acciones">
-            <button class="btn btn-sm btn-success" *ngIf="" (click)="openModal(ver)" style="margin-right:10px;">
+
+            <button class="btn btn-lg btn-success" *ngIf="" (click)="openModal(ver)" style="margin-right:10px;">
 
               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
             </button>
@@ -65,7 +55,7 @@
           </ng-template>
 
 
-            <button class="btn btn-sm btn-danger" (click)="openModal(template)" style="margin-right:10px;">
+            <button class="btn btn-lg btn-danger" (click)="openModal(template)" style="margin-right:10px;">
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar
             </button>
 
@@ -85,15 +75,12 @@
             </div>            
           </ng-template>
 
-            <a class="btn btn-sm btn-primary" [routerLink]="['/graf-lineal']">
+            <a class="btn btn-lg btn-primary" [routerLink]="['/graf-lineal',sensor._id]">
               <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graficar
             </a>
-
 
           </td>
         </tr>
     </table>  
   </div>
-
-
   </div>

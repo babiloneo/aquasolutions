@@ -34,7 +34,7 @@ export class RegistrarAlbercaComponent implements OnInit{
 		private _uploadService:UploadService,
 		){
 		this.title="ALBERCAS";
-		this.alberca=new Alberca('','','','','','');
+		this.alberca=new Alberca('','','','','','','','');
 		this.identity=this._userService.getIdentity();
 		this.token=this._userService.getToken();
 		this.url=GLOBAL.url;
@@ -44,6 +44,7 @@ export class RegistrarAlbercaComponent implements OnInit{
 	}
 
 	onSubmit(){
+		this.alberca['Alb_Empresa']=this.identity['Usu_Empresa'];
 		this._albercaService.addAlberca(this.token,this.alberca).subscribe(
 			response =>{
 				if(!response.alberca){

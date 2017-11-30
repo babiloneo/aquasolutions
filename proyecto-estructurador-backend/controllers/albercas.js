@@ -62,6 +62,8 @@ function saveAlberca(req,res){
 		alberca.Alb_Capacidad = params.Alb_Capacidad;
 		alberca.Alb_Ubicacion = params.Alb_Ubicacion;
 		alberca.Alb_Image = null;
+		alberca.Alb_Estado=true;
+		alberca.Alb_Empresa = params.Alb_Empresa;
 		alberca.user = req.user.sub;
 
 		alberca.save((err,albercaStored) =>{
@@ -83,10 +85,10 @@ function saveAlberca(req,res){
 
 
 function getAlbercas(req,res){
-	var id = req.params.id;
+	var empresa = req.params.empresa;
 
 
-	Alberca.find({user:id}).exec((err,albercas) =>{
+	Alberca.find({Alb_Estado:true,Alb_Empresa:empresa}).exec((err,albercas) =>{
 		if(err){
 			res.status(500).send({message:'Eror en la peticion'});
 		}else{
@@ -194,8 +196,7 @@ function deleteAlberca(req,res){
 
 	var albercaId=req.params.id;
 
-	Alberca.findByIdAndRemove(albercaId,(err,albercaRemoved) =>{
-
+	Alberca.update({_id:albercaId},{Alb_Estado:false},{new:true},(err,albercaRemoved) =>{
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
 		}else{

@@ -1,14 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { Observable } from "rxjs";
+import { Router,ActivatedRoute,Params} from '@angular/router';
+import { DatosService } from '../../services/datos.service';
+import { UserService } from '../../services/user.services';
+import { Datos } from '../../models/datos';
 
 @Component({
 	selector:'lineal',
 	templateUrl:'lineal.component.html',
-    styleUrls:['lineal.component.css']
+    styleUrls:['lineal.component.css'],
+    providers:[DatosService,UserService]
     
     })
 
 export class LinealComponent implements OnInit{
+
+    public token;
+    public datosObtenido:Datos;
+    public status: string;
+    public message:string;
+    constructor(
+        private _route:ActivatedRoute,
+        private _router:Router,
+        private _datosService:DatosService,
+        private _userService:UserService
+    )
+    {
+        this.token=this._userService.getToken();
+    }
 
     chart = new Chart( {
 
@@ -53,7 +73,7 @@ export class LinealComponent implements OnInit{
             className:'xaxis',
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
-                second: '%H:%M:%S',
+                //second: '%H:%M:%S',
                 month: '%e. %b',
                 year: '%b'
             },
@@ -96,88 +116,44 @@ export class LinealComponent implements OnInit{
         },
 
         series: [{
-            name: 'PH',
-            data: [
-                
-                [Date.UTC(1970, 9, 21), 0],
-                [Date.UTC(1970, 10, 4), 0.18],
-                [Date.UTC(1970, 10, 9), 0.35],
-                [Date.UTC(1970, 10, 27), 0.22],
-                [Date.UTC(1970, 11, 2), 0.29],
-                [Date.UTC(1970, 11, 26), 0.58],
-                [Date.UTC(1970, 11, 29), 0.57],
-                [Date.UTC(1971, 0, 11), 0.39],
-                [Date.UTC(1971, 0, 26), 0.32],
-                [Date.UTC(1971, 1, 3), 1.52],
-                [Date.UTC(1971, 1, 11), 1.42],
-                [Date.UTC(1971, 1, 25), 1.3],
-                [Date.UTC(1971, 2, 11), 1.28],
-                [Date.UTC(1971, 3, 11), 1.89],
-                [Date.UTC(1971, 4, 1), 1.15],
-                [Date.UTC(1971, 4, 5), 2.92],
-                [Date.UTC(1971, 4, 19), 1.75],
-                [Date.UTC(1971, 5, 3), 3]
-            ]
-        },
-        {
-            name: 'Temperatura',
-            data: [
-                
-                [Date.UTC(1970, 9, 21), 0],
-                [Date.UTC(1970, 10, 4), 0.28],
-                [Date.UTC(1970, 10, 9), 0.25],
-                [Date.UTC(1970, 10, 27), 0.2],
-                [Date.UTC(1970, 11, 2), 0.28],
-                [Date.UTC(1970, 11, 26), 0.28],
-                [Date.UTC(1970, 11, 29), 0.47],
-                [Date.UTC(1971, 0, 11), 0.79],
-                [Date.UTC(1971, 0, 26), 0.72],
-                [Date.UTC(1971, 1, 3), 1.02],
-                [Date.UTC(1971, 1, 11), 1.12],
-                [Date.UTC(1971, 1, 25), 1.2],
-                [Date.UTC(1971, 2, 11), 1.18],
-                [Date.UTC(1971, 3, 11), 1.19],
-                [Date.UTC(1971, 4, 1), 1.85],
-                [Date.UTC(1971, 4, 5), 2.22],
-                [Date.UTC(1971, 4, 19), 1.15],
-                [Date.UTC(1971, 5, 3), 0]
-            ]
-        },
-        {
-            name: 'Amperaje',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-                
-                [Date.UTC(1970, 9, 21), 12.3],
-                [Date.UTC(1970, 10, 4), 10.28],
-                [Date.UTC(1970, 10, 9), 12.25],
-                [Date.UTC(1970, 10, 27), 15.2],
-                [Date.UTC(1970, 11, 2), 15.28],
-                [Date.UTC(1970, 11, 26), 15.28],
-                [Date.UTC(1970, 11, 29), 15.47],
-                [Date.UTC(1971, 0, 11), 12.79],
-                [Date.UTC(1971, 0, 26), 11.72],
-                [Date.UTC(1971, 1, 3), 12.02],
-                [Date.UTC(1971, 1, 11), 13.12],
-                [Date.UTC(1971, 1, 25), 12.2],
-                [Date.UTC(1971, 2, 11), 12.18],
-                [Date.UTC(1971, 3, 11), 13.19],
-                [Date.UTC(1971, 4, 1), 11.85],
-                [Date.UTC(1971, 4, 5), 14.22],
-                [Date.UTC(1971, 4, 19), 10.15],
-                [Date.UTC(1971, 5, 3),17.00]
-            ]
+            name: 'Medida: ',
+            data: []
         }]
     });
 
-    add() {
-    this.chart.addPoint(Math.floor(Math.random() * 10));
+
+    requestData(){
+        this._route.params.forEach((params:Params) =>{
+            let id =params['id'];
+            this._datosService.getDato(id,this.token).subscribe(
+                response =>{
+                    if(!response.registro){
+                        this.status="error";
+                        this.message=response.message;
+                    }else{
+                        this.datosObtenido=response.registro;
+                        var dato = parseFloat(this.datosObtenido[0].registro);
+                        //console.log(""+this.dato);
+                        this.chart.addPoint(dato);
+                    }
+                },
+                error =>{
+                    console.log(<any>error);
+                    this.status="error";
+                    this.message="Error en el servidor";
+                }
+            );
+
+
+
+            setTimeout(()=>{ 
+            this.requestData();   //<<<---    using ()=> syntax
+             },5000);
+        });
     }
 
 	ngOnInit(){
 		console.log('mi grafica');
-
+        this.requestData();
 	}		
 }

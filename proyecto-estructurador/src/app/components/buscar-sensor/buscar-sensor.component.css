@@ -1,3 +1,57 @@
+
+/*Menu de panel administrativo para altas,bajas y busquedas*/
+.secciones {
+	/*padding:20px;*/
+	margin-top: 10px;
+
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: center;
+
+}
+
+.secciones nav{
+	width: 100%;
+	max-width: 960px;
+ 	margin: 40px;
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content:center;
+}
+
+.secciones nav a {
+	width: 80px;
+	background: white;
+	padding:5px;
+	margin: 5px;
+	border: 2px solid #3db7ef;
+
+	font-family: gadugi;
+	font-size: 1.2em;
+	color: #4d4f54;
+
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	text-decoration: none;
+	flex-grow:1;
+}
+
+.secciones nav a:hover {
+	color: white;
+	background:#3db7ef;
+}
+
+.secciones nav a.active {
+	color: white;
+	background:#3db7ef;
+}
+
+/*fin del menu de alta,bajas y bsuquedas*/
+
 * {
 	margin: 0;
 	padding: 0;

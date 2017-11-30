@@ -14,7 +14,7 @@ var md_upload = multipart({uploadDir:'./uploads/sensores'})
 //mis direcciones
 api.get('/pruebas-sensor', md_auth.ensureAuth, SensorController.pruebas);
 api.post('/add_sensor',md_auth.ensureAuth, SensorController.saveSensor);
-api.get('/listar_sensores',md_auth.ensureAuth,SensorController.getSensores);
+api.get('/listar_sensores/:id',md_auth.ensureAuth,SensorController.getSensores);
 api.get('/obtener_sensor/:id',md_auth.ensureAuth,SensorController.getSensor);
 api.put('/update_sensor/:id',md_auth.ensureAuth,SensorController.updateSensor);
 api.post('/upload_image_sensor/:id', [md_auth.ensureAuth, md_upload], SensorController.uploadsImage);
